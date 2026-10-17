@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offers & Musafir Wallet - Musafir Travels</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            <img src="logo.jpg" alt="Musafir Logo" class="nav-logo">
+            Musafir Travels
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Buses</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="refunds.html">Refunds & Cancel</a>
+            <a href="offers.html" class="active">Offers & Wallet</a>
+            <div id="nav-auth-links">
+                <a href="login.html" class="btn-nav"><i class="fas fa-sign-in-alt"></i> Login / Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <div style="background: var(--pure-black); color: white; padding: 3rem 20px; text-align: center;">
+        <h1 style="font-size: 2.3rem; margin-bottom: 0.75rem;"><i class="fas fa-tags" style="color:var(--primary-red);"></i> Offers, Vouchers & Musafir Cash</h1>
+        <p style="color: #a0aec0; max-width: 600px; margin: 0 auto;">Save big on every journey across Maharashtra bus routes.</p>
+    </div>
+
+    <div style="max-width: 1000px; margin: 3.5rem auto; padding: 0 20px;">
+
+        <!-- Musafir Cash Wallet Card -->
+        <div style="background: linear-gradient(135deg, var(--primary-red), #991b1b); color: white; padding: 2.5rem 3rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px;">
+            <div>
+                <small style="text-transform: uppercase; letter-spacing: 1.5px; opacity: 0.95; font-weight: 600;">YOUR WALLET BALANCE</small>
+                <div style="font-size: 3.2rem; font-weight: 800; margin: 6px 0;">Rs <span class="wallet-badge-val">250</span></div>
+                <p style="font-size: 0.95rem; opacity: 0.95;"><i class="fas fa-gift" style="margin-right: 6px;"></i> Rs 250 Welcome Bonus active! Auto-applies at checkout.</p>
+            </div>
+            <button class="btn-primary" style="background: white; color: var(--pure-black); padding: 1rem 2.2rem; font-size: 1.05rem;" onclick="window.location.href='search.html'">BOOK BUS NOW <i class="fas fa-bus"></i></button>
+        </div>
+
+        <h2 style="margin-bottom: 1.75rem; color: var(--pure-black); font-size: 1.8rem;">Active Promo Vouchers</h2>
+
+        <!-- Promo Cards Grid -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 25px; margin-bottom: 3.5rem;">
+            
+            <div style="background: white; border: 2px dashed var(--primary-red); padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); position: relative;">
+                <span style="background: var(--primary-red); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: bold; position: absolute; top: 16px; right: 16px;">POPULAR</span>
+                <h3 style="color: var(--primary-red); margin-bottom: 6px; font-size: 1.5rem;">MUSAFIR20</h3>
+                <p style="font-weight: 700; margin-bottom: 10px; font-size: 1.05rem;">Save 20% OFF up to Rs 200</p>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">Valid on all Maharashtra bus routes. Min fare Rs 300.</p>
+                <button class="btn-secondary-sm" style="width: 100%; padding: 10px;" onclick="navigator.clipboard.writeText('MUSAFIR20'); alert('Code MUSAFIR20 copied!')"><i class="fas fa-copy"></i> Copy Code: MUSAFIR20</button>
+            </div>
+
+            <div style="background: white; border: 2px dashed #28a745; padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); position: relative;">
+                <span style="background: #28a745; color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: bold; position: absolute; top: 16px; right: 16px;">NEW USERS</span>
+                <h3 style="color: #28a745; margin-bottom: 6px; font-size: 1.5rem;">FIRSTBUS</h3>
+                <p style="font-weight: 700; margin-bottom: 10px; font-size: 1.05rem;">Flat Rs 100 Discount</p>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">Valid on your first bus booking. Min fare Rs 400.</p>
+                <button class="btn-secondary-sm" style="width: 100%; padding: 10px;" onclick="navigator.clipboard.writeText('FIRSTBUS'); alert('Code FIRSTBUS copied!')"><i class="fas fa-copy"></i> Copy Code: FIRSTBUS</button>
+            </div>
+
+            <div style="background: white; border: 2px dashed var(--gold-senior); padding: 2rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); position: relative;">
+                <span style="background: var(--gold-senior); color: white; padding: 4px 10px; border-radius: 4px; font-size: 0.78rem; font-weight: bold; position: absolute; top: 16px; right: 16px;">SENIOR CITIZEN</span>
+                <h3 style="color: var(--gold-senior); margin-bottom: 6px; font-size: 1.5rem;">SENIOR10</h3>
+                <p style="font-weight: 700; margin-bottom: 10px; font-size: 1.05rem;">10% Concession Discount</p>
+                <p style="font-size: 0.88rem; color: var(--text-muted); margin-bottom: 1.25rem;">Automatic concession for age 60+ passengers.</p>
+                <button class="btn-secondary-sm" style="width: 100%; padding: 10px;" onclick="navigator.clipboard.writeText('SENIOR10'); alert('Code SENIOR10 copied!')"><i class="fas fa-copy"></i> Copy Code: SENIOR10</button>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Musafir Travels. A College Sponsored Project.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

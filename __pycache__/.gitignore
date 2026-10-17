@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+
+# Editor
+.vscode/
+
+# Local database backups
+*.sqlite3-journal
+*.db-journal
+
+# Temporary files
+*.log
+.DS_Store
+Thumbs.db

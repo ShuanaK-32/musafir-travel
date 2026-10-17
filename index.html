@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Musafir Travels - Bus Ticket Booking Platform</title>
+    
+    <!-- Google Fonts: Poppins & Segoe UI -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome CSS Icons (Zero Emojis) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Top Contact Bar -->
+    <div style="background: #111; color: #ccc; padding: 6px 6%; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222;">
+        <div>
+            <span style="margin-right: 20px;"><i class="fas fa-phone-alt" style="color:var(--primary-red);"></i> Helpline: <strong style="color:white;">80552 06206</strong></span>
+            <span><i class="fas fa-envelope" style="color:var(--primary-red);"></i> Email: <strong style="color:white;">musafir.travels999@gmail.com</strong></span>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            <img src="logo.jpg" alt="Musafir Logo" class="nav-logo">
+            Musafir Travels
+        </div>
+        <div class="nav-links">
+            <a href="index.html" class="active">Home</a>
+            <a href="search.html">Search Buses</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="refunds.html">Refunds & Cancel</a>
+            <a href="offers.html">Offers & Wallet</a>
+            <div id="nav-auth-links">
+                <a href="login.html" class="btn-nav"><i class="fas fa-sign-in-alt"></i> Login / Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section (Features original bg.jpg background image) -->
+    <section class="hero">
+        <h1>Musafir Travels</h1>
+        <p>India's Preferred Bus Booking Platform</p>
+        
+        <!-- Search Form Widget -->
+        <div class="search-widget">
+            <div class="input-group">
+                <label for="from"><i class="fas fa-bus" style="color:var(--primary-red);"></i> From City</label>
+                <input type="text" id="from" placeholder="e.g. Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar (Aurangabad)">
+            </div>
+            
+            <div class="input-group">
+                <label for="to"><i class="fas fa-map-pin" style="color:var(--primary-red);"></i> To City</label>
+                <input type="text" id="to" placeholder="e.g. Mumbai" value="Mumbai">
+            </div>
+            
+            <div class="input-group">
+                <label for="date"><i class="fas fa-calendar-alt" style="color:var(--primary-red);"></i> Journey Date</label>
+                <input type="date" id="date">
+            </div>
+            
+            <button class="btn-primary" onclick="searchBuses()"><i class="fas fa-search"></i> SEARCH BUSES</button>
+        </div>
+    </section>
+
+    <!-- Why Choose Musafir -->
+<section class="why-musafir">
+
+    <div class="section-heading">
+        <h2>Why Choose Musafir Travels?</h2>
+        <p>Comfort, Convenience and Reliable Travel for your Journey.</p>
+    </div>
+
+    <div class="why-grid">
+
+        <div class="why-card">
+            <div class="why-image comfort-image"></div>
+
+            <div class="why-card-content">
+                <h3>Comfortable Journey</h3>
+                <p>Travel comfortably in well-equipped AC sleeper and seater buses.</p>
+            </div>
+        </div>
+
+
+        <div class="why-card">
+            <div class="why-image safety-image"></div>
+
+            <div class="why-card-content">
+                <h3>Safe & Reliable</h3>
+                <p>Enjoy a dependable travel experience across our major routes.</p>
+            </div>
+        </div>
+
+        <div class="why-card">
+            <div class="why-image routes-image"></div>
+
+            <div class="why-card-content">
+                <h3>Wide Route Network</h3>
+                <p>Travel between popular cities and destinations with Musafir.</p>
+            </div>
+        </div>
+
+        <div class="why-card">
+            <div class="why-image amenities-image"></div>
+
+            <div class="why-card-content">
+                <h3>Modern Amenities</h3>
+                <p>Enjoy useful facilities designed to make your journey comfortable.</p>
+            </div>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- Popular Routes Banner -->
+    <section style="background: white; padding: 3.5rem 20px; border-top: 1px solid var(--border-color);">
+        <div style="max-width: 1200px; margin: 0 auto;">
+            <h2 style="margin-bottom: 0.5rem; color: var(--pure-black); font-size: 1.8rem;">Popular Bus Routes Provided By Musafir Travels</h2>
+            <p style="color: var(--text-muted); margin-bottom: 1.75rem;">Daily luxury schedules with direct online seat booking.</p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
+                <a href="search.html?from=Chhatrapati Sambhajinagar (Aurangabad)&to=Mumbai" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Aurangabad to Mumbai</span>
+                    <strong style="color:var(--primary-red);">Rs 750</strong>
+                </a>
+                <a href="search.html?from=Chhatrapati Sambhajinagar (Aurangabad)&to=Pune" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Aurangabad to Pune</span>
+                    <strong style="color:var(--primary-red);">Rs 450</strong>
+                </a>
+                <a href="search.html?from=Mumbai&to=Pune" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Mumbai to Pune</span>
+                    <strong style="color:var(--primary-red);">Rs 600</strong>
+                </a>
+                <a href="search.html?from=Pune&to=Nagpur" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Pune to Nagpur</span>
+                    <strong style="color:var(--primary-red);">Rs 1350</strong>
+                </a>
+            </div>
+        </div>
+    </section>
+
+   <!-- Musafir Highlights -->
+<section class="musafir-highlights">
+
+    <div class="highlights-heading">
+        <span>OUR JOURNEY</span>
+        <h2>Musafir Highlights</h2>
+        <p>A glimpse of our journey, buses and travel experiences.</p>
+    </div>
+
+    <div class="highlights-grid">
+
+        <div class="highlight-card">
+            <img src="Images/MT_1.jpg" alt="Musafir highlight 1">
+        </div>
+
+        <div class="highlight-card">
+            <img src="Images/MT_2.jpg" alt="Musafir highlight 2">
+        </div>
+
+        <div class="highlight-card">
+            <img src="Images/MT_3.jpg" alt="Musafir highlight 3">
+        </div>
+
+        <div class="highlight-card">
+            <img src="Images/MT_4.jpg" alt="Musafir highlight 4">
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Musafir Travels</h4>
+                <p style="font-size: 0.85rem; color: #a0aec0;">Leading online bus ticket booking platform.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="search.html"><i class="fas fa-chevron-right"></i> Search Bus Tickets</a></li>
+                    <li><a href="bookings.html"><i class="fas fa-chevron-right"></i> My Bookings & Receipts</a></li>
+                    <li><a href="refunds.html"><i class="fas fa-chevron-right"></i> Cancellation Policy & Refunds</a></li>
+                    <li><a href="login.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                    <li><a href="admin.html"><i class="fas fa-chevron-right"></i> System Admin Portal</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Customer Support</h4>
+                <ul>
+                    <li><i class="fas fa-phone-alt"></i> Toll-Free: 80552 06206</li>
+                    <li><i class="fas fa-envelope"></i> Email: musafir.travels999@gmail.com</li>
+                    <li><i class="fas fa-clock"></i> Hours: 24/7 Helpline</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Musafir Travels.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Musafir Travels</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            <img src="logo.jpg" alt="Musafir Logo" class="nav-logo">
+            Musafir Travels
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Buses</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="refunds.html">Refunds & Cancel</a>
+            <a href="offers.html">Offers & Wallet</a>
+            <div id="nav-auth-links">
+                <a href="login.html" class="btn-nav"><i class="fas fa-sign-in-alt"></i> Login / Signup</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Container -->
+    <div class="auth-container">
+        <div class="auth-card">
+            
+            <!-- Login Role Selector Tabs -->
+            <div style="display: flex; background: var(--off-white); padding: 6px; border-radius: 12px; margin-bottom: 1.75rem; border: 1px solid var(--border-color);">
+                <button type="button" id="tab-btn-user" class="btn-primary" style="flex:1; background: var(--primary-red); color: white; border-radius: 8px; font-size: 0.9rem; transition: all 0.25s ease;" onclick="switchLoginMode('user')">
+                    <i class="fas fa-user"></i> Customer Login
+                </button>
+                <button type="button" id="tab-btn-admin" class="btn-primary" style="flex:1; background: transparent; color: var(--text-main); border-radius: 8px; font-size: 0.9rem; transition: all 0.25s ease;" onclick="switchLoginMode('admin')">
+                    <i class="fas fa-user-shield"></i> Admin Login
+                </button>
+            </div>
+
+            <div style="margin-bottom: 1.5rem; text-align: center;">
+                <h2 id="login-heading-txt" style="margin-bottom: 6px; color: var(--pure-black);">Customer Login</h2>
+                <p id="login-subheading-txt" style="color: var(--text-muted); font-size: 0.9rem;">Sign in to access your bookings, tickets, and wallet</p>
+            </div>
+
+            <!-- Error and Success Messages -->
+            <div id="login-error-alert" style="display: none; background: #fee2e2; border: 1px solid #ef4444; color: #b91c1c; padding: 12px 16px; border-radius: 8px; font-size: 0.88rem; margin-bottom: 1.25rem;">
+                <i class="fas fa-exclamation-circle" style="margin-right: 6px;"></i> <span id="login-error-msg"></span>
+            </div>
+            
+            <form onsubmit="handleUserLogin(event)">
+                <input type="hidden" id="login-role-mode" value="user">
+
+                <div class="input-group" style="margin-bottom: 1.25rem;">
+                    <label id="login-email-label">Email Address *</label>
+                    <input type="email" id="login-email" placeholder="name@example.com" required autocomplete="email">
+                </div>
+
+                <div class="input-group" style="margin-bottom: 1.5rem;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <label>Password *</label>
+                    </div>
+                    <input type="password" id="login-password" placeholder="Enter your password" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" id="btn-login-submit" class="btn-primary" style="width: 100%; padding: 0.95rem; font-size: 0.95rem; font-weight: 700; letter-spacing: 0.5px;">
+                    SIGN IN <i class="fas fa-arrow-right"></i>
+                </button>
+            </form>
+            
+            <div id="google-login-section">
+                <div class="divider">OR</div>
+
+                <button class="btn-google" type="button" onclick="handleGoogleSignIn()">
+                    <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google Logo" style="height:20px;">
+                    Continue with Google
+                </button>
+            </div>
+            
+            <div class="auth-links" style="margin-top: 1.5rem; text-align: center; font-size: 0.9rem;">
+                Don't have an account? <a href="signup.html" style="color: var(--primary-red); font-weight: 700;">Sign Up here</a>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-bottom">
+            <p>&copy; 2026 Musafir Travels. A College Sponsored Project.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function switchLoginMode(mode) {
+            const uBtn = document.getElementById('tab-btn-user');
+            const aBtn = document.getElementById('tab-btn-admin');
+            const roleInput = document.getElementById('login-role-mode');
+            const heading = document.getElementById('login-heading-txt');
+            const subheading = document.getElementById('login-subheading-txt');
+            const emailInput = document.getElementById('login-email');
+            const googleSec = document.getElementById('google-login-section');
+            const errorBox = document.getElementById('login-error-alert');
+
+            if (errorBox) errorBox.style.display = 'none';
+
+            if (mode === 'admin') {
+                roleInput.value = 'admin';
+                aBtn.style.background = 'var(--primary-red)';
+                aBtn.style.color = 'white';
+                uBtn.style.background = 'transparent';
+                uBtn.style.color = 'var(--text-main)';
+
+                heading.innerText = 'Admin Portal Login';
+                subheading.innerText = 'Secure portal access for Musafir system administrators';
+                emailInput.placeholder = 'admin@musafir.com';
+                if (googleSec) googleSec.style.display = 'none';
+            } else {
+                roleInput.value = 'user';
+                uBtn.style.background = 'var(--primary-red)';
+                uBtn.style.color = 'white';
+                aBtn.style.background = 'transparent';
+                aBtn.style.color = 'var(--text-main)';
+
+                heading.innerText = 'Customer Login';
+                subheading.innerText = 'Sign in to access your bookings, tickets, and wallet';
+                emailInput.placeholder = 'name@example.com';
+                if (googleSec) googleSec.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
