@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: musafir-travel
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python server.py
+    envVars:
+      - key: RAZORPAY_KEY_ID
+        value: rzp_test_TtfckYcWVm7nKW
+      - key: RAZORPAY_KEY_SECRET
+        value: BK21lKWOu4YsLWq8VkKm1v7O

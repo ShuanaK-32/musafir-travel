@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Mount base -->
+  <rect x="8" y="10" width="8" height="24" rx="2" fill="#475569"/>
+  <!-- Arm -->
+  <path d="M16 22 L26 22 L30 26" fill="none" stroke="#64748b" stroke-width="4" stroke-linecap="round"/>
+  <!-- Camera housing -->
+  <polygon points="26,18 52,24 50,38 24,34" fill="#1e293b" stroke="#0f172a" stroke-width="2"/>
+  <!-- Camera lens -->
+  <rect x="50" y="24" width="6" height="14" rx="2" fill="#0284c7"/>
+  <circle cx="53" cy="31" r="2" fill="#38bdf8"/>
+  <!-- Standby recording light -->
+  <circle cx="34" cy="24" r="2.5" fill="#ef4444"/>
+</svg>

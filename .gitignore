@@ -1,0 +1,7 @@
+__pycache__/
+*.py[cod]
+*$py.class
+*.zip
+.vscode/
+database/musafir_database_backup.sqlite
+server_backup.py

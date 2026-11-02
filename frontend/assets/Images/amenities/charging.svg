@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="boltGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#d97706"/>
+    </linearGradient>
+  </defs>
+  <!-- Phone outline -->
+  <rect x="18" y="8" width="28" height="48" rx="6" fill="#1e293b" stroke="#334155" stroke-width="2"/>
+  <rect x="21" y="13" width="22" height="38" rx="3" fill="#0f172a"/>
+  <!-- Screen power bolt -->
+  <polygon points="34,18 25,32 32,32 30,44 39,30 32,30" fill="url(#boltGrad)"/>
+  <!-- Charging socket indicator -->
+  <rect x="28" y="58" width="8" height="4" rx="1.5" fill="#64748b"/>
+  <!-- Battery percentage bar -->
+  <rect x="25" y="46" width="14" height="2" rx="1" fill="#22c55e"/>
+</svg>

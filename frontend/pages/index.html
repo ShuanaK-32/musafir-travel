@@ -4,210 +4,664 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Musafir Travels - Bus Ticket Booking Platform</title>
-    
-    <!-- Google Fonts: Poppins & Segoe UI -->
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    
-    <!-- FontAwesome CSS Icons (Zero Emojis) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
+
 <body>
 
     <!-- Top Contact Bar -->
-    <div style="background: #111; color: #ccc; padding: 6px 6%; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222;">
+    <div style="background:#111;color:#ccc;padding:8px 6%;font-size:0.85rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;border-bottom:1px solid #222;">
         <div>
-            <span style="margin-right: 20px;"><i class="fas fa-phone-alt" style="color:var(--primary-red);"></i> Helpline: <strong style="color:white;">80552 06206</strong></span>
-            <span><i class="fas fa-envelope" style="color:var(--primary-red);"></i> Email: <strong style="color:white;">musafir.travels999@gmail.com</strong></span>
+            <span style="margin-right:20px;">
+                <i class="fas fa-phone-alt" style="color:var(--primary-red);"></i>
+                Helpline: <strong style="color:white;font-weight:700;">80552 06206</strong>
+            </span>
+
+            <span>
+                <i class="fas fa-envelope" style="color:var(--primary-red);"></i>
+                Email: <strong style="color:white;font-weight:700;">musafir.travels999@gmail.com</strong>
+            </span>
+        </div>
+        <div style="font-size:0.8rem;color:#94a3b8;">
+            <i class="fas fa-shield-alt" style="color:#16a34a;"></i> Official Musafir Travels Booking Platform
         </div>
     </div>
 
     <!-- Navigation Bar -->
     <nav class="navbar">
         <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
-            <img src="logo.jpg" alt="Musafir Logo" class="nav-logo">
-            Musafir Travels
+            <img src="../assets/Images/Musafir_logo.jpg" alt="Musafir Logo" class="nav-logo">
+            <span style="font-weight:900;font-size:1.35rem;letter-spacing:0.3px;">Musafir Travels</span>
         </div>
+
         <div class="nav-links">
             <a href="index.html" class="active">Home</a>
             <a href="search.html">Search Buses</a>
             <a href="bookings.html">My Bookings</a>
-            <a href="refunds.html">Refunds & Cancel</a>
-            <a href="offers.html">Offers & Wallet</a>
+            <a href="refunds.html">Refunds &amp; Cancel</a>
+            <a href="offers.html">Offers &amp; Wallet</a>
+
             <div id="nav-auth-links">
-                <a href="login.html" class="btn-nav"><i class="fas fa-sign-in-alt"></i> Login / Signup</a>
+                <a href="login.html" class="btn-nav" style="font-weight:700;">
+                    <i class="fas fa-sign-in-alt"></i> Login / Signup
+                </a>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section (Features original bg.jpg background image) -->
+    <!-- Hero Section -->
     <section class="hero">
-        <h1>Musafir Travels</h1>
-        <p>India's Preferred Bus Booking Platform</p>
-        
-        <!-- Search Form Widget -->
+        <h1 class="hero-main-title"><span class="title-white">Musafir</span> <span class="title-red">Travels</span></h1>
+        <p class="hero-sub-title">Maharashtra's Most Trusted &amp; Preferred Luxury Bus Network</p>
+
+        <!-- Bus Search Form -->
         <div class="search-widget">
             <div class="input-group">
-                <label for="from"><i class="fas fa-bus" style="color:var(--primary-red);"></i> From City</label>
-                <input type="text" id="from" placeholder="e.g. Chhatrapati Sambhajinagar" value="Chhatrapati Sambhajinagar (Aurangabad)">
+                <label for="from" style="font-weight:700;">
+                    <i class="fas fa-bus" style="color:var(--primary-red);"></i>
+                    From City
+                </label>
+                <input
+                    type="text"
+                    id="from"
+                    list="from-city-list"
+                    placeholder="Select Departure City"
+                    value="Chhatrapati Sambhajinagar (Aurangabad)"
+                    autocomplete="off">
+                <datalist id="from-city-list">
+                    <option value="Chhatrapati Sambhajinagar (Aurangabad)"></option>
+                    <option value="Mumbai"></option>
+                    <option value="Pune"></option>
+                    <option value="Surat"></option>
+                </datalist>
             </div>
-            
+
             <div class="input-group">
-                <label for="to"><i class="fas fa-map-pin" style="color:var(--primary-red);"></i> To City</label>
-                <input type="text" id="to" placeholder="e.g. Mumbai" value="Mumbai">
+                <label for="to" style="font-weight:700;">
+                    <i class="fas fa-map-pin" style="color:var(--primary-red);"></i>
+                    To City
+                </label>
+                <input
+                    type="text"
+                    id="to"
+                    list="to-city-list"
+                    placeholder="Select Destination City"
+                    value="Mumbai"
+                    autocomplete="off">
+                <datalist id="to-city-list">
+                    <option value="Mumbai"></option>
+                    <option value="Pune"></option>
+                    <option value="Chhatrapati Sambhajinagar (Aurangabad)"></option>
+                    <option value="Nagpur"></option>
+                    <option value="Hyderabad"></option>
+                </datalist>
             </div>
-            
+
             <div class="input-group">
-                <label for="date"><i class="fas fa-calendar-alt" style="color:var(--primary-red);"></i> Journey Date</label>
-                <input type="date" id="date">
+                <label for="date" style="font-weight:700;">
+                    <i class="fas fa-calendar-alt" style="color:var(--primary-red);"></i>
+                    Journey Date
+                </label>
+                <input type="date" id="date" required>
             </div>
-            
-            <button class="btn-primary" onclick="searchBuses()"><i class="fas fa-search"></i> SEARCH BUSES</button>
+
+            <button type="button" class="btn-primary" onclick="searchBuses()" style="font-weight:800;letter-spacing:0.5px;">
+                <i class="fas fa-search"></i> SEARCH BUSES
+            </button>
+        </div>
+
+        <!-- Quick Route Shortcut Pills -->
+        <div class="quick-routes-bar">
+            <span class="quick-routes-label"><i class="fas fa-route"></i> Available Routes:</span>
+            <button type="button" class="route-pill-btn" onclick="setQuickRoute('Chhatrapati Sambhajinagar (Aurangabad)', 'Mumbai')">Aurangabad &rarr; Mumbai</button>
+            <button type="button" class="route-pill-btn" onclick="setQuickRoute('Chhatrapati Sambhajinagar (Aurangabad)', 'Pune')">Aurangabad &rarr; Pune</button>
+            <button type="button" class="route-pill-btn" onclick="setQuickRoute('Mumbai', 'Pune')">Mumbai &rarr; Pune</button>
+            <button type="button" class="route-pill-btn" onclick="setQuickRoute('Pune', 'Nagpur')">Pune &rarr; Nagpur</button>
+            <button type="button" class="route-pill-btn" onclick="setQuickRoute('Surat', 'Mumbai')">Surat &rarr; Mumbai</button>
+            <button type="button" class="route-pill-btn" onclick="setQuickRoute('Chhatrapati Sambhajinagar (Aurangabad)', 'Hyderabad')">Aurangabad &rarr; Hyderabad</button>
         </div>
     </section>
 
-    <!-- Why Choose Musafir -->
-<section class="why-musafir">
-
-    <div class="section-heading">
-        <h2>Why Choose Musafir Travels?</h2>
-        <p>Comfort, Convenience and Reliable Travel for your Journey.</p>
-    </div>
-
-    <div class="why-grid">
-
-        <div class="why-card">
-            <div class="why-image comfort-image"></div>
-
-            <div class="why-card-content">
-                <h3>Comfortable Journey</h3>
-                <p>Travel comfortably in well-equipped AC sleeper and seater buses.</p>
-            </div>
+    <!-- Scrolling Amenities Ticker Section with Real Images (No emojis, no extra headings) -->
+    <section class="amenities-ticker-section">
+        <div class="ticker-header">
+            <h2 class="section-main-heading">Onboard Bus <span class="text-red">Amenities</span></h2>
+            <p class="section-sub-desc">Every Musafir Travels bus is outfitted with premium facilities to ensure your journey is relaxing, safe, and pleasant.</p>
         </div>
 
+        <div class="marquee-container">
+            <div class="marquee-track">
+                <!-- Group 1: Genuine Image Thumbnails -->
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/ac.svg" alt="AC Climate Control" class="amenity-img">
+                    <span>Fully AC Climate Control</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/sleeper.svg" alt="2+1 Luxury Sleeper Berths" class="amenity-img">
+                    <span>2+1 Luxury Sleeper Berths</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/charging.svg" alt="Fast USB Charging Ports" class="amenity-img">
+                    <span>Fast USB Charging Ports</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/gps.svg" alt="24/7 Live GPS Bus Tracking" class="amenity-img">
+                    <span>24/7 Live GPS Bus Tracking</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/cctv.svg" alt="Dual CCTV Surveillance" class="amenity-img">
+                    <span>Dual CCTV Surveillance</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/reading_light.svg" alt="Personal Reading Lights" class="amenity-img">
+                    <span>Personal Reading Lights</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/water.svg" alt="Free Sealed Drinking Water" class="amenity-img">
+                    <span>Free Sealed Drinking Water</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/blanket.svg" alt="Clean Sanitized Bed Linens" class="amenity-img">
+                    <span>Clean Sanitized Bed Linens</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/first_aid.svg" alt="Emergency First Aid &amp; SOS" class="amenity-img">
+                    <span>Emergency First Aid &amp; SOS</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/luggage.svg" alt="Spacious Luggage Storage" class="amenity-img">
+                    <span>Spacious Luggage Storage</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/driver.svg" alt="Verified Senior Highway Captains" class="amenity-img">
+                    <span>Verified Senior Highway Captains</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/support.svg" alt="24/7 Passenger Support Helpline" class="amenity-img">
+                    <span>24/7 Passenger Support Helpline</span>
+                </div>
 
-        <div class="why-card">
-            <div class="why-image safety-image"></div>
-
-            <div class="why-card-content">
-                <h3>Safe & Reliable</h3>
-                <p>Enjoy a dependable travel experience across our major routes.</p>
-            </div>
-        </div>
-
-        <div class="why-card">
-            <div class="why-image routes-image"></div>
-
-            <div class="why-card-content">
-                <h3>Wide Route Network</h3>
-                <p>Travel between popular cities and destinations with Musafir.</p>
-            </div>
-        </div>
-
-        <div class="why-card">
-            <div class="why-image amenities-image"></div>
-
-            <div class="why-card-content">
-                <h3>Modern Amenities</h3>
-                <p>Enjoy useful facilities designed to make your journey comfortable.</p>
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-    <!-- Popular Routes Banner -->
-    <section style="background: white; padding: 3.5rem 20px; border-top: 1px solid var(--border-color);">
-        <div style="max-width: 1200px; margin: 0 auto;">
-            <h2 style="margin-bottom: 0.5rem; color: var(--pure-black); font-size: 1.8rem;">Popular Bus Routes Provided By Musafir Travels</h2>
-            <p style="color: var(--text-muted); margin-bottom: 1.75rem;">Daily luxury schedules with direct online seat booking.</p>
-
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 15px;">
-                <a href="search.html?from=Chhatrapati Sambhajinagar (Aurangabad)&to=Mumbai" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Aurangabad to Mumbai</span>
-                    <strong style="color:var(--primary-red);">Rs 750</strong>
-                </a>
-                <a href="search.html?from=Chhatrapati Sambhajinagar (Aurangabad)&to=Pune" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Aurangabad to Pune</span>
-                    <strong style="color:var(--primary-red);">Rs 450</strong>
-                </a>
-                <a href="search.html?from=Mumbai&to=Pune" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Mumbai to Pune</span>
-                    <strong style="color:var(--primary-red);">Rs 600</strong>
-                </a>
-                <a href="search.html?from=Pune&to=Nagpur" class="btn-secondary-sm" style="padding: 14px 18px; font-size: 0.95rem; background: var(--off-white); display: flex; align-items: center; justify-content: space-between; border-radius: 8px;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red); margin-right: 8px;"></i> Pune to Nagpur</span>
-                    <strong style="color:var(--primary-red);">Rs 1350</strong>
-                </a>
+                <!-- Group 2: Cloned for infinite smooth marquee -->
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/ac.svg" alt="AC Climate Control" class="amenity-img">
+                    <span>Fully AC Climate Control</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/sleeper.svg" alt="2+1 Luxury Sleeper Berths" class="amenity-img">
+                    <span>2+1 Luxury Sleeper Berths</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/charging.svg" alt="Fast USB Charging Ports" class="amenity-img">
+                    <span>Fast USB Charging Ports</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/gps.svg" alt="24/7 Live GPS Bus Tracking" class="amenity-img">
+                    <span>24/7 Live GPS Bus Tracking</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/cctv.svg" alt="Dual CCTV Surveillance" class="amenity-img">
+                    <span>Dual CCTV Surveillance</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/reading_light.svg" alt="Personal Reading Lights" class="amenity-img">
+                    <span>Personal Reading Lights</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/water.svg" alt="Free Sealed Drinking Water" class="amenity-img">
+                    <span>Free Sealed Drinking Water</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/blanket.svg" alt="Clean Sanitized Bed Linens" class="amenity-img">
+                    <span>Clean Sanitized Bed Linens</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/first_aid.svg" alt="Emergency First Aid &amp; SOS" class="amenity-img">
+                    <span>Emergency First Aid &amp; SOS</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/luggage.svg" alt="Spacious Luggage Storage" class="amenity-img">
+                    <span>Spacious Luggage Storage</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/driver.svg" alt="Verified Senior Highway Captains" class="amenity-img">
+                    <span>Verified Senior Highway Captains</span>
+                </div>
+                <div class="amenity-pill">
+                    <img src="../assets/Images/amenities/support.svg" alt="24/7 Passenger Support Helpline" class="amenity-img">
+                    <span>24/7 Passenger Support Helpline</span>
+                </div>
             </div>
         </div>
     </section>
 
-   <!-- Musafir Highlights -->
-<section class="musafir-highlights">
+    
+    <!-- Making Every Trip Easy and Relaxing (Inspired by musafirbus.in) -->
+    <section class="easy-relaxing-section">
+        <div class="easy-relaxing-container">
+            <div class="easy-relaxing-row">
+                <!-- Left Side: Clean content & Book Now button -->
+                <div class="easy-relaxing-content-col">
+                    <div class="easy-relaxing-card">
+                        <h2 class="easy-relaxing-heading">
+                            Making Every Trip <span class="text-red">Easy and Relaxing</span>
+                        </h2>
+                        <p class="easy-relaxing-text">
+                            Enjoy a hassle-free journey with well-maintained buses, modern amenities, and professional drivers ensuring your comfort. With <strong class="text-red">Musafir Travels</strong>, every ride is smooth, safe, and truly relaxing.
+                        </p>
+                        <div class="easy-relaxing-btn-wrap">
+                            <a href="search.html" class="easy-relaxing-book-btn">
+                                <i class="fas fa-ticket-alt"></i> Book Now
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-    <div class="highlights-heading">
-        <span>OUR JOURNEY</span>
-        <h2>Musafir Highlights</h2>
-        <p>A glimpse of our journey, buses and travel experiences.</p>
+                <!-- Right Side: Bus Images from musafirbus.in "Trusted journeys, every step of the way" -->
+                <div class="easy-relaxing-image-col">
+                    <div class="easy-relaxing-slider-container">
+                        <div class="relaxing-slides-wrapper" id="relaxing-slides-track">
+                            <!-- Slide 1: Musafir Luxury Sleeper Coach -->
+                            <div class="relaxing-slide active">
+                                <img src="../assets/Images/about-img.png"
+                                     alt="Musafir Travels Luxury Sleeper Coach - Trusted journeys every step of the way"
+                                     class="easy-relaxing-image"
+                                     id="relaxing-bus-img-1"
+                                     loading="lazy">
+                            </div>
+                            <!-- Slide 2: Musafir Premium Fleet Bus -->
+                            <div class="relaxing-slide">
+                                <img src="../assets/Images/about-img2.png"
+                                     alt="Musafir Travels Modern Bus Fleet - Easy and relaxing travel"
+                                     class="easy-relaxing-image"
+                                     id="relaxing-bus-img-2"
+                                     loading="lazy">
+                            </div>
+                        </div>
+
+                        <!-- Interactive Navigation Dots -->
+                        <div class="relaxing-slider-dots">
+                            <button type="button" class="slider-dot active" onclick="switchRelaxingSlide(0)" aria-label="Bus 1"></button>
+                            <button type="button" class="slider-dot" onclick="switchRelaxingSlide(1)" aria-label="Bus 2"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Musafir (With Interactive Hover Description Overlays) -->
+    <section class="why-musafir">
+        <div class="section-heading">
+            <h2 class="section-main-heading">Why Choose <span class="text-red">Musafir Travels</span>?</h2>
+            <p class="section-sub-desc">Memorable trips begin with great facilities — hover over each card to view detailed features.</p>
+        </div>
+
+        <div class="why-grid">
+
+            <!-- Card 1: Comfortable Journey -->
+            <div class="why-card">
+                <div class="why-image comfort-image"></div>
+                <div class="why-card-content">
+                    <div class="why-card-top-icon"><i class="fas fa-couch"></i></div>
+                    <h3>Comfortable Journey</h3>
+                    <p>Travel comfortably in well-equipped AC sleeper and executive push-back seater buses.</p>
+                </div>
+                <!-- Interactive Hover Reveal Overlay (like musafirbus.in) -->
+                <div class="why-card-overlay">
+                    <div class="overlay-icon"><i class="fas fa-couch"></i></div>
+                    <h4>Comfortable Journey</h4>
+                    <p class="overlay-desc">Experience superior road comfort with spacious 2+1 AC sleeper berths and orthopaedic foam cushioning tailored for relaxing overnight journeys.</p>
+                    <ul class="overlay-checklist">
+                        <li><i class="fas fa-check-circle"></i> Ergonomic Reclining Sleeper Berths</li>
+                        <li><i class="fas fa-check-circle"></i> Individual AC Vents &amp; Reading Lights</li>
+                        <li><i class="fas fa-check-circle"></i> Clean Sanitized Blankets &amp; Pillows</li>
+                    </ul>
+                    <a href="search.html" class="overlay-cta-btn"><i class="fas fa-ticket-alt"></i> Book Comfortable Journey &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 2: Safe & Reliable -->
+            <div class="why-card">
+                <div class="why-image safety-image"></div>
+                <div class="why-card-content">
+                    <div class="why-card-top-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h3>Safe &amp; Reliable</h3>
+                    <p>Enjoy a dependable travel experience across all our major Maharashtra routes.</p>
+                </div>
+                <!-- Interactive Hover Reveal Overlay (like musafirbus.in) -->
+                <div class="why-card-overlay">
+                    <div class="overlay-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Safe &amp; Reliable</h4>
+                    <p class="overlay-desc">Your safety is our priority. Every bus is equipped with live vehicle telematics, dual CCTV surveillance, and certified veteran drivers.</p>
+                    <ul class="overlay-checklist">
+                        <li><i class="fas fa-check-circle"></i> 24/7 Live GPS Bus Tracking</li>
+                        <li><i class="fas fa-check-circle"></i> Speed Governors &amp; SOS Emergency Alarms</li>
+                        <li><i class="fas fa-check-circle"></i> Verified Drivers with 10+ Years Experience</li>
+                    </ul>
+                    <a href="search.html" class="overlay-cta-btn"><i class="fas fa-ticket-alt"></i> Book Safe Journey &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 3: Wide Route Network -->
+            <div class="why-card">
+                <div class="why-image routes-image"></div>
+                <div class="why-card-content">
+                    <div class="why-card-top-icon"><i class="fas fa-route"></i></div>
+                    <h3>Wide Route Network</h3>
+                    <p>Travel between major cities and popular destinations with seamless daily connections.</p>
+                </div>
+                <!-- Interactive Hover Reveal Overlay (like musafirbus.in) -->
+                <div class="why-card-overlay">
+                    <div class="overlay-icon"><i class="fas fa-route"></i></div>
+                    <h4>Wide Route Network</h4>
+                    <p class="overlay-desc">Punctual daily departures connecting Chhatrapati Sambhajinagar, Mumbai, Pune, Nagpur, Surat, and Hyderabad with zero delays.</p>
+                    <ul class="overlay-checklist">
+                        <li><i class="fas fa-check-circle"></i> Prime Central Hub Boarding Points</li>
+                        <li><i class="fas fa-check-circle"></i> Guaranteed Punctual Departures</li>
+                        <li><i class="fas fa-check-circle"></i> Seamless Maharashtra-Wide Connectivity</li>
+                    </ul>
+                    <a href="search.html" class="overlay-cta-btn"><i class="fas fa-ticket-alt"></i> Explore Routes &rarr;</a>
+                </div>
+            </div>
+
+            <!-- Card 4: Customer Satisfaction -->
+            <div class="why-card">
+                <div class="why-image satisfaction-image"></div>
+                <div class="why-card-content">
+                    <div class="why-card-top-icon"><i class="fas fa-smile"></i></div>
+                    <h3>Customer Satisfaction</h3>
+                    <p>Over 500,000+ satisfied passengers, 4.9-star ratings, and round-the-clock dedicated helpline support.</p>
+                </div>
+                <!-- Interactive Hover Reveal Overlay -->
+                <div class="why-card-overlay">
+                    <div class="overlay-icon"><i class="fas fa-heart"></i></div>
+                    <h4>Customer Satisfaction</h4>
+                    <p class="overlay-desc">We take immense pride in delivering top-tier passenger experiences with verified punctuality, sanitized coaches, and transparent booking services.</p>
+                    <ul class="overlay-checklist">
+                        <li><i class="fas fa-check-circle"></i> 4.9/5 Star Verified Passenger Rating</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Dedicated Helpline (80552 06206)</li>
+                        <li><i class="fas fa-check-circle"></i> Instant E-Ticket Confirmation &amp; Easy Refunds</li>
+                    </ul>
+                    <a href="search.html" class="overlay-cta-btn"><i class="fas fa-ticket-alt"></i> Experience Musafir &rarr;</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Popular Routes (No extra pill heading, bold styled main title) -->
+    <section style="background:white;padding:4rem 20px;border-top:1px solid var(--border-color);">
+        <div style="max-width:1200px;margin:0 auto;">
+            <div style="text-align:center;margin-bottom:2.2rem;">
+                <h2 class="section-main-heading">Popular Bus Routes By <span class="text-red">Musafir Travels</span></h2>
+                <p class="section-sub-desc">
+                    Daily luxury schedules with direct online seat reservation and dynamic UPI QR payment.
+                </p>
+            </div>
+
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
+
+                <a href="search.html?from=Chhatrapati%20Sambhajinagar%20%28Aurangabad%29&amp;to=Mumbai"
+                   class="btn-secondary-sm"
+                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Aurangabad to Mumbai</span>
+                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 750</strong>
+                </a>
+
+                <a href="search.html?from=Chhatrapati%20Sambhajinagar%20%28Aurangabad%29&amp;to=Pune"
+                   class="btn-secondary-sm"
+                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Aurangabad to Pune</span>
+                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 450</strong>
+                </a>
+
+                <a href="search.html?from=Mumbai&amp;to=Pune"
+                   class="btn-secondary-sm"
+                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Mumbai to Pune</span>
+                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 600</strong>
+                </a>
+
+                <a href="search.html?from=Pune&amp;to=Nagpur"
+                   class="btn-secondary-sm"
+                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
+                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Pune to Nagpur</span>
+                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 1350</strong>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Musafir Highlights (No extra pill heading, bold styled main title) -->
+    <section class="musafir-highlights" style="padding:4rem 20px;">
+        <div class="highlights-heading" style="text-align:center;margin-bottom:2.2rem;">
+            <h2 class="section-main-heading"><span class="text-red">Musafir</span> Highlights</h2>
+            <p class="section-sub-desc">A glimpse of our journey, modern luxury fleet, and passenger comfort.</p>
+        </div>
+
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <img src="../assets/Images/MT_1.jpg" alt="Musafir bus highlight 1" loading="lazy">
+            </div>
+
+            <div class="highlight-card">
+                <img src="../assets/Images/MT_2.jpg" alt="Musafir bus highlight 2" loading="lazy">
+            </div>
+
+            <div class="highlight-card">
+                <img src="../assets/Images/MT_3.jpg" alt="Musafir bus highlight 3" loading="lazy">
+            </div>
+
+            <div class="highlight-card">
+                <img src="../assets/Images/MT_4.jpg" alt="Musafir bus highlight 4" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <!-- Diwali Festive Greeting Modal Popup (Zero emojis, clean vector lamp) -->
+    <div id="diwali-modal" class="diwali-modal-overlay" style="display: none;">
+        <div class="diwali-modal-box">
+            <button type="button" class="diwali-close-btn" onclick="closeDiwaliModal()" aria-label="Close">&times;</button>
+
+            <!-- Festive Lamp and Glow (FontAwesome vector) -->
+            <div class="diwali-festive-art">
+                <div class="diwali-diya-glow">
+                    <i class="fas fa-fire"></i>
+                </div>
+                <div class="diwali-sparkles-row">
+                    <i class="fas fa-star diwali-star-1"></i>
+                    <i class="fas fa-star diwali-star-2"></i>
+                    <i class="fas fa-star diwali-star-3"></i>
+                </div>
+            </div>
+
+            <h3 class="diwali-title">Happy Diwali</h3>
+
+            <p class="diwali-message">
+                May the divine light of Diwali illuminate your life with happiness, joy, good health, and success. Celebrate this festival of lights with safe, luxurious journeys home to your loved ones!
+            </p>
+
+            <!-- Festive Offer Coupon Box -->
+            <div class="diwali-coupon-card">
+                <div class="diwali-coupon-header">
+                    <span>SPECIAL FESTIVE TRAVEL GIFT</span>
+                </div>
+                <div class="diwali-coupon-code-wrap">
+                    <span class="coupon-lbl">Use Code:</span>
+                    <strong id="diwali-coupon-text">DIWALI20</strong>
+                    <button type="button" onclick="copyDiwaliCode()" id="diwali-copy-btn" class="diwali-copy-btn">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+                <div class="diwali-coupon-desc">
+                    Get Flat <strong>20% OFF</strong> (Up to Rs. 200) on all Maharashtra bus tickets booked this festive season!
+                </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="diwali-actions">
+                <button type="button" class="btn-primary diwali-cta-btn" onclick="applyDiwaliAndSearch()">
+                    <i class="fas fa-bus"></i> BOOK FESTIVE JOURNEY NOW
+                </button>
+                <button type="button" class="diwali-dismiss-btn" onclick="closeDiwaliModal()">
+                    Continue Exploring Website &rarr;
+                </button>
+            </div>
+        </div>
     </div>
 
-    <div class="highlights-grid">
-
-        <div class="highlight-card">
-            <img src="Images/MT_1.jpg" alt="Musafir highlight 1">
-        </div>
-
-        <div class="highlight-card">
-            <img src="Images/MT_2.jpg" alt="Musafir highlight 2">
-        </div>
-
-        <div class="highlight-card">
-            <img src="Images/MT_3.jpg" alt="Musafir highlight 3">
-        </div>
-
-        <div class="highlight-card">
-            <img src="Images/MT_4.jpg" alt="Musafir highlight 4">
-        </div>
-
-    </div>
-
-</section>
+    <!-- Floating Re-open Badge -->
+    <button type="button" id="diwali-float-badge" class="diwali-float-badge" onclick="openDiwaliModal()">
+        <i class="fas fa-gifts"></i> <span>Diwali Offer &bull; 20% OFF</span>
+    </button>
 
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-grid">
             <div class="footer-col">
-                <h4>Musafir Travels</h4>
-                <p style="font-size: 0.85rem; color: #a0aec0;">Leading online bus ticket booking platform.</p>
+                <h4 style="font-weight:800;font-size:1.2rem;">Musafir Travels</h4>
+                <p style="font-size:0.85rem;color:#a0aec0;line-height:1.6;">
+                    Leading online bus ticket booking platform connecting Maharashtra with premium AC Sleeper &amp; Seater coaches.
+                </p>
             </div>
+
             <div class="footer-col">
-                <h4>Quick Links</h4>
+                <h4 style="font-weight:800;font-size:1.1rem;">Quick Links</h4>
                 <ul>
                     <li><a href="search.html"><i class="fas fa-chevron-right"></i> Search Bus Tickets</a></li>
-                    <li><a href="bookings.html"><i class="fas fa-chevron-right"></i> My Bookings & Receipts</a></li>
-                    <li><a href="refunds.html"><i class="fas fa-chevron-right"></i> Cancellation Policy & Refunds</a></li>
-                    <li><a href="login.html"><i class="fas fa-chevron-right"></i> Customer Login</a></li>
+                    <li><a href="bookings.html"><i class="fas fa-chevron-right"></i> My Bookings &amp; Receipts</a></li>
+                    <li><a href="refunds.html"><i class="fas fa-chevron-right"></i> Cancellation Policy &amp; Refunds</a></li>
+                    <li><a href="offers.html"><i class="fas fa-chevron-right"></i> Special Offers &amp; Discounts</a></li>
                     <li><a href="admin.html"><i class="fas fa-chevron-right"></i> System Admin Portal</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
-                <h4>Customer Support</h4>
+                <h4 style="font-weight:800;font-size:1.1rem;">Customer Support</h4>
                 <ul>
-                    <li><i class="fas fa-phone-alt"></i> Toll-Free: 80552 06206</li>
-                    <li><i class="fas fa-envelope"></i> Email: musafir.travels999@gmail.com</li>
-                    <li><i class="fas fa-clock"></i> Hours: 24/7 Helpline</li>
+                    <li><i class="fas fa-phone-alt" style="color:var(--primary-red);"></i> Helpline: 80552 06206</li>
+                    <li><i class="fas fa-envelope" style="color:var(--primary-red);"></i> Email: musafir.travels999@gmail.com</li>
+                    <li><i class="fas fa-clock" style="color:var(--primary-red);"></i> Hours: 24/7 Dedicated Support</li>
                 </ul>
             </div>
         </div>
+
         <div class="footer-bottom">
-            <p>&copy; 2026 Musafir Travels.</p>
+            <p>&copy; 2026 Musafir Travels. All rights reserved.</p>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Scripts -->
+    <script src="../js/script.js"></script>
+
+    <!-- Diwali Modal Inline JS -->
+    <script>
+                function setQuickRoute(from, to) {
+            const f = document.getElementById("from");
+            const t = document.getElementById("to");
+            if (f) f.value = from;
+            if (t) t.value = to;
+        }
+
+        // Relaxing Section Bus Images Carousel
+        let currentRelaxingSlide = 0;
+        let relaxingInterval = null;
+
+        function switchRelaxingSlide(index) {
+            const slides = document.querySelectorAll('.relaxing-slide');
+            const dots = document.querySelectorAll('.slider-dot');
+            if (!slides.length) return;
+            currentRelaxingSlide = index % slides.length;
+            slides.forEach((slide, idx) => {
+                if (idx === currentRelaxingSlide) {
+                    slide.classList.add('active');
+                } else {
+                    slide.classList.remove('active');
+                }
+            });
+            dots.forEach((dot, idx) => {
+                if (idx === currentRelaxingSlide) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            });
+        }
+
+        function startRelaxingSlider() {
+            if (relaxingInterval) clearInterval(relaxingInterval);
+            relaxingInterval = setInterval(() => {
+                switchRelaxingSlide(currentRelaxingSlide + 1);
+            }, 3600);
+        }
+
+        function pauseRelaxingSlider() {
+            if (relaxingInterval) clearInterval(relaxingInterval);
+        }
+
+function openDiwaliModal() {
+            const modal = document.getElementById("diwali-modal");
+            if (modal) modal.style.display = "flex";
+        }
+
+        function closeDiwaliModal() {
+            const modal = document.getElementById("diwali-modal");
+            if (modal) modal.style.display = "none";
+            sessionStorage.setItem("diwali_wish_dismissed", "true");
+        }
+
+        function copyDiwaliCode() {
+            const code = "DIWALI20";
+            navigator.clipboard.writeText(code).then(() => {
+                const btn = document.getElementById("diwali-copy-btn");
+                if (btn) {
+                    const orig = btn.innerHTML;
+                    btn.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+                    btn.style.background = "#dcfce7";
+                    btn.style.color = "#15803d";
+                    setTimeout(() => {
+                        btn.innerHTML = orig;
+                        btn.style.background = "";
+                        btn.style.color = "";
+                    }, 2000);
+                }
+            }).catch(() => {
+                alert("Coupon Code: DIWALI20");
+            });
+        }
+
+        function applyDiwaliAndSearch() {
+            localStorage.setItem("musafir_applied_coupon", "DIWALI20");
+            closeDiwaliModal();
+            const searchWidget = document.querySelector(".search-widget");
+            if (searchWidget) {
+                searchWidget.scrollIntoView({ behavior: "smooth", block: "center" });
+            } else {
+                window.location.href = "search.html";
+            }
+        }
+
+                document.addEventListener("DOMContentLoaded", function () {
+            // Start bus image carousel in relaxing section
+            startRelaxingSlider();
+            const sliderBox = document.querySelector('.easy-relaxing-slider-container');
+            if (sliderBox) {
+                sliderBox.addEventListener('mouseenter', pauseRelaxingSlider);
+                sliderBox.addEventListener('mouseleave', startRelaxingSlider);
+            }
+
+            // Check if user has already dismissed modal in this session
+            const dismissed = sessionStorage.getItem("diwali_wish_dismissed");
+            if (!dismissed) {
+                setTimeout(openDiwaliModal, 900);
+            }
+        });
+    </script>
 </body>
 </html>

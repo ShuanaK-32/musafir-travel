@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="acGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7"/>
+      <stop offset="100%" stop-color="#0369a1"/>
+    </linearGradient>
+  </defs>
+  <rect x="6" y="14" width="52" height="26" rx="6" fill="url(#acGrad)" stroke="#0c4a6e" stroke-width="2"/>
+  <rect x="12" y="32" width="40" height="4" rx="2" fill="#e0f2fe"/>
+  <circle cx="50" cy="22" r="2.5" fill="#38bdf8"/>
+  <circle cx="44" cy="22" r="2.5" fill="#4ade80"/>
+  <!-- Breeze waves -->
+  <path d="M16 46 Q24 50 32 46 T48 46" fill="none" stroke="#38bdf8" stroke-width="2.5" stroke-linecap="round"/>
+  <path d="M20 52 Q28 56 36 52 T44 52" fill="none" stroke="#7dd3fc" stroke-width="2" stroke-linecap="round"/>
+  <!-- Snowflake core -->
+  <circle cx="20" cy="22" r="3" fill="#bae6fd"/>
+</svg>

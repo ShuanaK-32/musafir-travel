@@ -15,6 +15,694 @@
 // 1. IndexedDB Database Engine Setup
 // ==========================================
 
+// 12 Authentic Musafir Travels Maharashtra Bus Schedules (musafirbus.in)
+window.MUSAFIR_DEFAULT_BUSES = [
+  {
+    "id": 101,
+    "operator": "Musafir Travels BharatBenz AC Sleeper (2+1)",
+    "busNumber": "MH-20-BT-9921",
+    "busType": "AC Sleeper",
+    "rating": 4.9,
+    "ratingsCount": 420,
+    "from": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "to": "Mumbai",
+    "departureTime": "09:30 PM",
+    "arrivalTime": "05:30 AM",
+    "duration": "8h 00m",
+    "price": 850,
+    "totalSeats": 30,
+    "seatsAvailable": 20,
+    "boardingPoints": [
+      {
+        "name": "Baba Petrol Pump Musafir Office",
+        "time": "09:30 PM"
+      },
+      {
+        "name": "Adalat Road Musafir Head Office",
+        "time": "09:50 PM"
+      },
+      {
+        "name": "CIDCO Bus Stand Seven Hills",
+        "time": "10:15 PM"
+      },
+      {
+        "name": "Waluj Tirupati Hotel",
+        "time": "10:45 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Thane Teen Hath Naka",
+        "time": "04:45 AM"
+      },
+      {
+        "name": "Vashi Highway Signal",
+        "time": "05:05 AM"
+      },
+      {
+        "name": "Dadar East Asiad Stand",
+        "time": "05:30 AM"
+      },
+      {
+        "name": "Borivali East National Park",
+        "time": "06:00 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L1",
+      "L5",
+      "U2",
+      "U8"
+    ],
+    "womenSeats": [
+      "L3",
+      "L4",
+      "U3",
+      "U4"
+    ],
+    "seniorSeats": [
+      "L11",
+      "L12",
+      "U11",
+      "U12"
+    ]
+  },
+  {
+    "id": 102,
+    "operator": "Musafir Travels Volvo 9600 Multi-Axle AC Sleeper (2+1)",
+    "busNumber": "MH-20-VL-8844",
+    "busType": "AC Sleeper",
+    "rating": 4.9,
+    "ratingsCount": 530,
+    "from": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "to": "Mumbai",
+    "departureTime": "10:15 PM",
+    "arrivalTime": "06:15 AM",
+    "duration": "8h 00m",
+    "price": 950,
+    "totalSeats": 30,
+    "seatsAvailable": 18,
+    "boardingPoints": [
+      {
+        "name": "Baba Petrol Pump Musafir Office",
+        "time": "10:15 PM"
+      },
+      {
+        "name": "Adalat Road Musafir Head Office",
+        "time": "10:35 PM"
+      },
+      {
+        "name": "CIDCO Bus Stand Seven Hills",
+        "time": "10:55 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Thane Teen Hath Naka",
+        "time": "05:30 AM"
+      },
+      {
+        "name": "Dadar East Asiad Stand",
+        "time": "06:00 AM"
+      },
+      {
+        "name": "Borivali East National Park",
+        "time": "06:15 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L2",
+      "L6",
+      "U1",
+      "U5",
+      "L9"
+    ],
+    "womenSeats": [
+      "L3",
+      "L4",
+      "U3",
+      "U4"
+    ],
+    "seniorSeats": [
+      "L11",
+      "L12",
+      "U11",
+      "U12"
+    ]
+  },
+  {
+    "id": 103,
+    "operator": "Musafir Travels Volvo 9600 Multi-Axle AC Sleeper (2+1)",
+    "busNumber": "MH-20-VL-8845",
+    "busType": "AC Sleeper",
+    "rating": 4.9,
+    "ratingsCount": 490,
+    "from": "Mumbai",
+    "to": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "departureTime": "09:15 PM",
+    "arrivalTime": "05:15 AM",
+    "duration": "8h 00m",
+    "price": 950,
+    "totalSeats": 30,
+    "seatsAvailable": 22,
+    "boardingPoints": [
+      {
+        "name": "Borivali East National Park",
+        "time": "09:15 PM"
+      },
+      {
+        "name": "Dadar East Asiad Stand",
+        "time": "09:50 PM"
+      },
+      {
+        "name": "Thane Teen Hath Naka",
+        "time": "10:30 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Waluj Tirupati Hotel",
+        "time": "04:15 AM"
+      },
+      {
+        "name": "Baba Petrol Pump Musafir Office",
+        "time": "04:45 AM"
+      },
+      {
+        "name": "CIDCO Bus Stand Seven Hills",
+        "time": "05:15 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L2",
+      "U1",
+      "U6",
+      "L9"
+    ],
+    "womenSeats": [
+      "L3",
+      "U3"
+    ],
+    "seniorSeats": [
+      "L11",
+      "L12"
+    ]
+  },
+  {
+    "id": 104,
+    "operator": "Musafir Express Executive AC Seater (2+2)",
+    "busNumber": "MH-20-EX-4410",
+    "busType": "AC Seater",
+    "rating": 4.7,
+    "ratingsCount": 310,
+    "from": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "to": "Pune",
+    "departureTime": "06:00 AM",
+    "arrivalTime": "11:15 AM",
+    "duration": "5h 15m",
+    "price": 450,
+    "totalSeats": 36,
+    "seatsAvailable": 28,
+    "boardingPoints": [
+      {
+        "name": "Central Bus Stand (CBS)",
+        "time": "06:00 AM"
+      },
+      {
+        "name": "Kranti Chowk Musafir Counter",
+        "time": "06:15 AM"
+      },
+      {
+        "name": "Waluj Bajaj Auto Stop",
+        "time": "06:40 AM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Kharadi Bypass",
+        "time": "10:15 AM"
+      },
+      {
+        "name": "Viman Nagar Metro Stop",
+        "time": "10:30 AM"
+      },
+      {
+        "name": "Shivajinagar Musafir Office",
+        "time": "11:00 AM"
+      },
+      {
+        "name": "Swargate Musafir Depot",
+        "time": "11:15 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "S1",
+      "S2",
+      "S7",
+      "S12"
+    ],
+    "womenSeats": [
+      "S3",
+      "S4",
+      "S5",
+      "S6"
+    ],
+    "seniorSeats": [
+      "S33",
+      "S34",
+      "S35",
+      "S36"
+    ]
+  },
+  {
+    "id": 105,
+    "operator": "Musafir Travels BharatBenz AC Sleeper (2+1)",
+    "busNumber": "MH-20-BT-3312",
+    "busType": "AC Sleeper",
+    "rating": 4.8,
+    "ratingsCount": 450,
+    "from": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "to": "Pune",
+    "departureTime": "02:00 PM",
+    "arrivalTime": "07:30 PM",
+    "duration": "5h 30m",
+    "price": 550,
+    "totalSeats": 30,
+    "seatsAvailable": 23,
+    "boardingPoints": [
+      {
+        "name": "Baba Petrol Pump Musafir Office",
+        "time": "02:00 PM"
+      },
+      {
+        "name": "CIDCO Bus Stand",
+        "time": "02:25 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Wakad Hinjewadi Flyover",
+        "time": "07:00 PM"
+      },
+      {
+        "name": "Swargate Musafir Depot",
+        "time": "07:30 PM"
+      }
+    ],
+    "occupiedSeats": [
+      "L2",
+      "U4",
+      "L8"
+    ],
+    "womenSeats": [
+      "L3",
+      "U3"
+    ],
+    "seniorSeats": [
+      "L11",
+      "U11"
+    ]
+  },
+  {
+    "id": 106,
+    "operator": "Musafir Travels Scania Multi-Axle AC Sleeper (2+1)",
+    "busNumber": "MH-20-SC-7701",
+    "busType": "AC Sleeper",
+    "rating": 4.9,
+    "ratingsCount": 620,
+    "from": "Pune",
+    "to": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "departureTime": "11:30 PM",
+    "arrivalTime": "05:00 AM",
+    "duration": "5h 30m",
+    "price": 650,
+    "totalSeats": 30,
+    "seatsAvailable": 21,
+    "boardingPoints": [
+      {
+        "name": "Swargate Musafir Depot",
+        "time": "11:30 PM"
+      },
+      {
+        "name": "Shivajinagar Musafir Office",
+        "time": "11:50 PM"
+      },
+      {
+        "name": "Viman Nagar Hyatt Hotel",
+        "time": "12:15 AM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Baba Petrol Pump Musafir Office",
+        "time": "04:30 AM"
+      },
+      {
+        "name": "CIDCO Bus Stand Seven Hills",
+        "time": "05:00 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L1",
+      "L4",
+      "U2",
+      "U7"
+    ],
+    "womenSeats": [
+      "L3",
+      "U3"
+    ],
+    "seniorSeats": [
+      "L11",
+      "L12"
+    ]
+  },
+  {
+    "id": 107,
+    "operator": "Musafir Volvo Multi-Axle AC Sleeper (2+1)",
+    "busNumber": "MH-01-VL-7711",
+    "busType": "AC Sleeper",
+    "rating": 4.9,
+    "ratingsCount": 580,
+    "from": "Mumbai",
+    "to": "Pune",
+    "departureTime": "07:30 AM",
+    "arrivalTime": "11:00 AM",
+    "duration": "3h 30m",
+    "price": 550,
+    "totalSeats": 30,
+    "seatsAvailable": 22,
+    "boardingPoints": [
+      {
+        "name": "Dadar East Asiad Stand",
+        "time": "07:30 AM"
+      },
+      {
+        "name": "Maitri Park Chembur",
+        "time": "07:55 AM"
+      },
+      {
+        "name": "Vashi Highway Signal",
+        "time": "08:20 AM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Wakad Hinjewadi Flyover",
+        "time": "10:30 AM"
+      },
+      {
+        "name": "Shivajinagar Musafir Office",
+        "time": "10:45 AM"
+      },
+      {
+        "name": "Swargate Musafir Depot",
+        "time": "11:00 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L2",
+      "L6",
+      "U1"
+    ],
+    "womenSeats": [
+      "L3",
+      "L4"
+    ],
+    "seniorSeats": [
+      "L11",
+      "L12"
+    ]
+  },
+  {
+    "id": 108,
+    "operator": "Musafir Volvo Multi-Axle AC Sleeper (2+1)",
+    "busNumber": "MH-12-VL-7712",
+    "busType": "AC Sleeper",
+    "rating": 4.9,
+    "ratingsCount": 540,
+    "from": "Pune",
+    "to": "Mumbai",
+    "departureTime": "06:00 PM",
+    "arrivalTime": "09:30 PM",
+    "duration": "3h 30m",
+    "price": 550,
+    "totalSeats": 30,
+    "seatsAvailable": 24,
+    "boardingPoints": [
+      {
+        "name": "Swargate Musafir Depot",
+        "time": "06:00 PM"
+      },
+      {
+        "name": "Shivajinagar Musafir Office",
+        "time": "06:15 PM"
+      },
+      {
+        "name": "Wakad Hinjewadi Flyover",
+        "time": "06:40 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Vashi Highway Signal",
+        "time": "08:45 PM"
+      },
+      {
+        "name": "Maitri Park Chembur",
+        "time": "09:05 PM"
+      },
+      {
+        "name": "Dadar East Asiad Stand",
+        "time": "09:30 PM"
+      }
+    ],
+    "occupiedSeats": [
+      "L1",
+      "U3"
+    ],
+    "womenSeats": [
+      "L3",
+      "U4"
+    ],
+    "seniorSeats": [
+      "L11",
+      "L12"
+    ]
+  },
+  {
+    "id": 109,
+    "operator": "Musafir Travels BharatBenz AC Sleeper (2+1)",
+    "busNumber": "GJ-05-BT-6677",
+    "busType": "AC Sleeper",
+    "rating": 4.8,
+    "ratingsCount": 470,
+    "from": "Surat",
+    "to": "Mumbai",
+    "departureTime": "09:15 PM",
+    "arrivalTime": "04:00 AM",
+    "duration": "6h 45m",
+    "price": 750,
+    "totalSeats": 30,
+    "seatsAvailable": 20,
+    "boardingPoints": [
+      {
+        "name": "Parvat Patiya Musafir Office",
+        "time": "09:15 PM"
+      },
+      {
+        "name": "Kadodara Char Rasta",
+        "time": "09:45 PM"
+      },
+      {
+        "name": "Palsana Underbridge",
+        "time": "10:10 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Borivali East National Park",
+        "time": "03:15 AM"
+      },
+      {
+        "name": "Andheri East Western Express",
+        "time": "03:30 AM"
+      },
+      {
+        "name": "Dadar East Asiad Stand",
+        "time": "04:00 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L2",
+      "L6",
+      "U1"
+    ],
+    "womenSeats": [
+      "L3",
+      "U3"
+    ],
+    "seniorSeats": [
+      "L11",
+      "U11"
+    ]
+  },
+  {
+    "id": 110,
+    "operator": "Musafir Travels BharatBenz Super Luxury Sleeper (2+1)",
+    "busNumber": "MH-20-NG-1122",
+    "busType": "AC Sleeper",
+    "rating": 4.9,
+    "ratingsCount": 510,
+    "from": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "to": "Nagpur",
+    "departureTime": "09:00 PM",
+    "arrivalTime": "05:30 AM",
+    "duration": "8h 30m",
+    "price": 1150,
+    "totalSeats": 30,
+    "seatsAvailable": 21,
+    "boardingPoints": [
+      {
+        "name": "Baba Petrol Pump Musafir Office",
+        "time": "09:00 PM"
+      },
+      {
+        "name": "Samruddhi Expressway Jalna Road",
+        "time": "09:40 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Dharampeth Musafir Office",
+        "time": "05:05 AM"
+      },
+      {
+        "name": "Chatrapati Square Ring Road",
+        "time": "05:15 AM"
+      },
+      {
+        "name": "Nagpur Ganeshpeth Stand",
+        "time": "05:30 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L1",
+      "L5",
+      "U2"
+    ],
+    "womenSeats": [
+      "L3",
+      "U3"
+    ],
+    "seniorSeats": [
+      "L11",
+      "L12"
+    ]
+  },
+  {
+    "id": 111,
+    "operator": "Musafir Gold Luxury Sleeper (2+1)",
+    "busNumber": "MH-12-GL-1008",
+    "busType": "AC Sleeper",
+    "rating": 4.8,
+    "ratingsCount": 390,
+    "from": "Pune",
+    "to": "Nagpur",
+    "departureTime": "05:00 PM",
+    "arrivalTime": "07:30 AM",
+    "duration": "14h 30m",
+    "price": 1350,
+    "totalSeats": 30,
+    "seatsAvailable": 19,
+    "boardingPoints": [
+      {
+        "name": "Swargate Musafir Office",
+        "time": "05:00 PM"
+      },
+      {
+        "name": "Viman Nagar Hyatt",
+        "time": "05:35 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "Dharampeth",
+        "time": "07:05 AM"
+      },
+      {
+        "name": "Nagpur Ganeshpeth Stand",
+        "time": "07:30 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L1",
+      "L2",
+      "U5"
+    ],
+    "womenSeats": [
+      "L4",
+      "U4"
+    ],
+    "seniorSeats": [
+      "L10",
+      "U10"
+    ]
+  },
+  {
+    "id": 112,
+    "operator": "Musafir Travels Volvo Multi-Axle AC Sleeper (2+1)",
+    "busNumber": "MH-20-HY-5501",
+    "busType": "AC Sleeper",
+    "rating": 4.8,
+    "ratingsCount": 310,
+    "from": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "to": "Hyderabad",
+    "departureTime": "08:30 PM",
+    "arrivalTime": "07:00 AM",
+    "duration": "10h 30m",
+    "price": 1100,
+    "totalSeats": 30,
+    "seatsAvailable": 24,
+    "boardingPoints": [
+      {
+        "name": "Baba Petrol Pump Musafir Office",
+        "time": "08:30 PM"
+      },
+      {
+        "name": "CIDCO Bus Stand",
+        "time": "08:50 PM"
+      }
+    ],
+    "droppingPoints": [
+      {
+        "name": "KPHB Colony Metro",
+        "time": "06:20 AM"
+      },
+      {
+        "name": "Ameerpet Metro",
+        "time": "06:40 AM"
+      },
+      {
+        "name": "Lakdikapul Musafir Counter",
+        "time": "07:00 AM"
+      }
+    ],
+    "occupiedSeats": [
+      "L2",
+      "U2"
+    ],
+    "womenSeats": [
+      "L3",
+      "U3"
+    ],
+    "seniorSeats": [
+      "L11",
+      "U11"
+    ]
+  }
+];
+
 const DB_NAME = "MusafirDatabaseDB";
 const DB_VERSION = 1;
 let dbInstance = null;
@@ -64,111 +752,7 @@ function seedIndexedDBIfEmpty() {
     countReq.onsuccess = () => {
       if (countReq.result === 0) {
         // Seed default Maharashtra buses from musafirbus.in
-        const defaultBuses = [
-          {
-            id: 101,
-            operator: "Musafir Travels Luxury AC Sleeper (2+1)",
-            busNumber: "MH-20-BT-9921",
-            busType: "AC Sleeper",
-            rating: 4.9,
-            ratingsCount: 420,
-            from: "Chhatrapati Sambhajinagar (Aurangabad)",
-            to: "Mumbai",
-            departureTime: "09:30 PM",
-            arrivalTime: "05:30 AM",
-            duration: "8h 00m",
-            price: 750,
-            totalSeats: 24,
-            seatsAvailable: 16,
-            boardingPoints: [
-              { name: "Baba Petrol Pump Musafir Office", time: "09:30 PM" },
-              { name: "Cidco Bus Stand", time: "09:50 PM" }
-            ],
-            droppingPoints: [
-              { name: "Thane Teen Hath Naka", time: "04:45 AM" },
-              { name: "Dadar East Asiad Stand", time: "05:15 AM" }
-            ],
-            occupiedSeats: ["L1", "L5", "U2", "U8"],
-            womenSeats: ["L3", "L4", "U3", "U4"],
-            seniorSeats: ["L11", "L12", "U11", "U12"]
-          },
-          {
-            id: 102,
-            operator: "Musafir Express Executive Seater (2+2)",
-            busNumber: "MH-20-EX-4410",
-            busType: "AC Seater",
-            rating: 4.7,
-            ratingsCount: 310,
-            from: "Chhatrapati Sambhajinagar (Aurangabad)",
-            to: "Pune",
-            departureTime: "06:00 AM",
-            arrivalTime: "11:00 AM",
-            duration: "5h 00m",
-            price: 450,
-            totalSeats: 36,
-            seatsAvailable: 24,
-            boardingPoints: [
-              { name: "Central Bus Stand (CBS)", time: "06:00 AM" },
-              { name: "Kranti Chowk", time: "06:15 AM" }
-            ],
-            droppingPoints: [
-              { name: "Viman Nagar Metro Stop", time: "10:30 AM" },
-              { name: "Shivajinagar Musafir Office", time: "11:00 AM" }
-            ],
-            occupiedSeats: ["S1", "S2", "S7", "S12"],
-            womenSeats: ["S3", "S4", "S5", "S6"],
-            seniorSeats: ["S33", "S34", "S35", "S36"]
-          },
-          {
-            id: 103,
-            operator: "Musafir Volvo Multi-Axle AC Sleeper (2+1)",
-            busNumber: "MH-01-VL-7711",
-            busType: "AC Sleeper",
-            rating: 4.9,
-            ratingsCount: 580,
-            from: "Mumbai",
-            to: "Pune",
-            departureTime: "07:30 AM",
-            arrivalTime: "11:00 AM",
-            duration: "3h 30m",
-            price: 600,
-            totalSeats: 24,
-            seatsAvailable: 15,
-            boardingPoints: [
-              { name: "Dadar East Asiad Stand", time: "07:30 AM" },
-              { name: "Vashi Highway Signal", time: "08:20 AM" }
-            ],
-            droppingPoints: [
-              { name: "Wakad Hinjewadi Flyover", time: "10:30 AM" },
-              { name: "Swargate Musafir Depot", time: "11:00 AM" }
-            ],
-            occupiedSeats: ["L2", "L6", "U1"],
-            womenSeats: ["L3", "L4"],
-            seniorSeats: ["L11", "L12"]
-          },
-          {
-            id: 104,
-            operator: "Musafir Gold Luxury Sleeper (2+1)",
-            busNumber: "MH-12-GL-1008",
-            busType: "AC Sleeper",
-            rating: 4.8,
-            ratingsCount: 390,
-            from: "Pune",
-            to: "Nagpur",
-            departureTime: "05:00 PM",
-            arrivalTime: "07:30 AM",
-            duration: "14h 30m",
-            price: 1350,
-            totalSeats: 24,
-            seatsAvailable: 17,
-            boardingPoints: [{ name: "Swargate Musafir Office", time: "05:00 PM" }],
-            droppingPoints: [{ name: "Nagpur Ganeshpeth Stand", time: "07:30 AM" }],
-            occupiedSeats: ["L1", "L2"],
-            womenSeats: ["L4", "U4"],
-            seniorSeats: ["L10", "U10"]
-          }
-        ];
-
+        const defaultBuses = window.MUSAFIR_DEFAULT_BUSES || [];
         defaultBuses.forEach(b => busStore.put(b));
 
         const userStore = tx.objectStore("users");
@@ -176,6 +760,7 @@ function seedIndexedDBIfEmpty() {
         userStore.put({ email: "user@musafir.com", password: "user123", name: "Rahul Sharma", role: "user", phone: "9876543210" });
 
         const couponStore = tx.objectStore("coupons");
+        couponStore.put({ code: "DIWALI20", discountPercent: 20, maxDiscount: 200, minAmount: 300, desc: "Special Diwali Festive Offer - Flat 20% OFF", active: true });
         couponStore.put({ code: "MUSAFIR20", discountPercent: 20, maxDiscount: 200, minAmount: 300, desc: "20% OFF up to Rs 200", active: true });
         couponStore.put({ code: "FIRSTBUS", flatDiscount: 100, minAmount: 400, desc: "Flat Rs 100 OFF for new users", active: true });
         couponStore.put({ code: "SENIOR10", discountPercent: 10, maxDiscount: 150, minAmount: 200, desc: "10% Concession for Senior Citizens", active: true });
@@ -185,26 +770,45 @@ function seedIndexedDBIfEmpty() {
   });
 }
 
+// Universal API Base URL (Works locally on localhost:5000 and deployed on Render/Cloud)
+const API_BASE = (typeof window !== "undefined" && window.location && window.location.origin && window.location.origin.startsWith("http"))
+  ? window.location.origin
+  : "http://localhost:5000";
+
 // Database Read/Write API Abstraction (IndexedDB + Python REST Server)
 const DatabaseAPI = {
-  getBuses: function() {
-    return new Promise((resolve) => {
-      fetch("http://localhost:5000/api/buses")
-        .then(res => res.json())
-        .then(data => resolve(data))
-        .catch(() => {
-          if (!dbInstance) { resolve([]); return; }
+  getBuses: async function () {
+    let buses = [];
+    try {
+      const res = await fetch(`${API_BASE}/api/buses`);
+      if (res && res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data) && data.length > 0) buses = data;
+      }
+    } catch (e) {
+      console.warn("Backend API not reachable, falling back to local DB");
+    }
+
+    if (buses.length === 0 && dbInstance) {
+      try {
+        buses = await new Promise((resolve) => {
           const tx = dbInstance.transaction(["buses"], "readonly");
           const store = tx.objectStore("buses");
           const req = store.getAll();
-          req.onsuccess = () => resolve(req.result);
+          req.onsuccess = () => resolve(req.result || []);
           req.onerror = () => resolve([]);
         });
-    });
+      } catch (e) {}
+    }
+
+    if (!buses || buses.length === 0) {
+      buses = window.MUSAFIR_DEFAULT_BUSES || [];
+    }
+    return buses;
   },
-  getBookings: function() {
+  getBookings: function () {
     return new Promise((resolve) => {
-      fetch("http://localhost:5000/api/bookings")
+      fetch(`${API_BASE}/api/bookings`)
         .then(res => res.json())
         .then(data => resolve(data))
         .catch(() => {
@@ -217,35 +821,75 @@ const DatabaseAPI = {
         });
     });
   },
-  saveBooking: function(booking) {
-    return new Promise((resolve) => {
-      fetch("http://localhost:5000/api/bookings", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(booking)
-      }).catch(err => console.log("Server sync fallback to IndexedDB"));
-
-      if (dbInstance) {
-        const tx = dbInstance.transaction(["bookings"], "readwrite");
-        const store = tx.objectStore("bookings");
-        store.put(booking);
+  saveBooking: async function (booking) {
+    let serverSaved = false;
+    try {
+      let response = null;
+      try {
+        response = await fetch("/api/bookings", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(booking)
+        });
+      } catch (err) {
+        response = await fetch(`${API_BASE}/api/bookings`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(booking)
+        });
       }
-      resolve(true);
-    });
+
+      if (response && response.ok) {
+        const result = await response.json();
+        if (result.status === "SUCCESS") {
+          serverSaved = true;
+        }
+      }
+    } catch (error) {
+      console.warn("SQLite server sync notice:", error);
+    }
+
+    // Always persist to IndexedDB & localStorage
+    if (dbInstance) {
+      try {
+        await new Promise((resolve, reject) => {
+          const tx = dbInstance.transaction(["bookings"], "readwrite");
+          tx.objectStore("bookings").put(booking);
+          tx.oncomplete = resolve;
+          tx.onerror = () => resolve();
+        });
+      } catch (_) {}
+    }
+
+    // Save occupied seats in local bus state
+    if (booking.busId && Array.isArray(booking.seats)) {
+      if (window.MUSAFIR_DEFAULT_BUSES) {
+        const b = window.MUSAFIR_DEFAULT_BUSES.find(x => x.id === booking.busId);
+        if (b) {
+          booking.seats.forEach(s => {
+            if (!b.occupiedSeats.includes(s)) b.occupiedSeats.push(s);
+          });
+          b.seatsAvailable = Math.max(0, b.totalSeats - b.occupiedSeats.length);
+        }
+      }
+    }
+
+    localStorage.setItem("musafir_last_booking", JSON.stringify(booking));
+    return true;
   },
-  getWalletBalance: function() {
+  getWalletBalance: function () {
     const bal = localStorage.getItem("musafir_wallet");
     return bal ? parseFloat(bal) : 250;
   },
-  updateWalletBalance: function(amount) {
+  updateWalletBalance: function (amount) {
     const current = DatabaseAPI.getWalletBalance();
     const updated = Math.max(0, current + amount);
     localStorage.setItem("musafir_wallet", updated.toString());
     return updated;
   },
-  loginUser: async function(email, password) {
+  loginUser: async function (email, password) {
     try {
-      const res = await fetch("http://localhost:5000/api/login", {
+      const res = await fetch(`${API_BASE}/api/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email, password })
@@ -274,9 +918,9 @@ const DatabaseAPI = {
       });
     }
   },
-  signupUser: async function(userData) {
+  signupUser: async function (userData) {
     try {
-      const res = await fetch("http://localhost:5000/api/signup", {
+      const res = await fetch(`${API_BASE}/api/signup`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData)
@@ -309,9 +953,9 @@ const DatabaseAPI = {
       });
     }
   },
-  getUsers: function() {
+  getUsers: function () {
     return new Promise((resolve) => {
-      fetch("http://localhost:5000/api/users")
+      fetch(`${API_BASE}/api/users`)
         .then(res => res.json())
         .then(data => resolve(data))
         .catch(() => {
@@ -464,13 +1108,41 @@ async function renderBusListings() {
   const maxPrice = document.getElementById('filter-price')?.value;
   const sortOption = document.getElementById('filter-sort')?.value;
 
-  let filtered = await DatabaseAPI.getBuses();
+  const allBuses = await DatabaseAPI.getBuses();
+  let filtered = [...allBuses];
 
-  if (searchFrom && searchTo) {
-    filtered = filtered.filter(bus => 
-      bus.from.toLowerCase().includes(searchFrom.toLowerCase()) && 
-      bus.to.toLowerCase().includes(searchTo.toLowerCase())
-    );
+  // Helper for Maharashtra city aliases
+  const normalizeCity = (c) => {
+    let s = (c || '').toLowerCase().trim();
+    if (s.includes('aurangabad') || s.includes('sambhajinagar')) return 'sambhajinagar';
+    if (s.includes('bombay') || s.includes('mumbai')) return 'mumbai';
+    if (s.includes('poona') || s.includes('pune')) return 'pune';
+    return s;
+  };
+
+  const normFrom = normalizeCity(searchFrom);
+  const normTo = normalizeCity(searchTo);
+
+  let searchMatches = filtered;
+  if (normFrom && normTo) {
+    searchMatches = filtered.filter(bus => {
+      const bFrom = normalizeCity(bus.from);
+      const bTo = normalizeCity(bus.to);
+      return bFrom.includes(normFrom) && bTo.includes(normTo);
+    });
+  } else if (normFrom) {
+    searchMatches = filtered.filter(bus => normalizeCity(bus.from).includes(normFrom));
+  } else if (normTo) {
+    searchMatches = filtered.filter(bus => normalizeCity(bus.to).includes(normTo));
+  }
+
+  let showingFallbackNotice = false;
+  if (searchMatches.length > 0) {
+    filtered = searchMatches;
+  } else {
+    // If no direct matches for searched pair, show all 12 buses with notice
+    filtered = [...allBuses];
+    showingFallbackNotice = true;
   }
 
   if (acFilter || nonAcFilter) {
@@ -493,11 +1165,37 @@ async function renderBusListings() {
     filtered = filtered.filter(bus => bus.price <= parseInt(maxPrice));
   }
 
+  if (filtered.length === 0) {
+    filtered = [...allBuses];
+  }
+
   if (sortOption === "price-low") filtered.sort((a, b) => a.price - b.price);
   else if (sortOption === "price-high") filtered.sort((a, b) => b.price - a.price);
   else if (sortOption === "rating") filtered.sort((a, b) => b.rating - a.rating);
 
   const resultsCount = document.getElementById('results-count');
+  if (resultsCount) resultsCount.innerText = `${filtered.length} Buses Available`;
+
+  container.innerHTML = "";
+
+  if (showingFallbackNotice && searchFrom && searchTo) {
+    const notice = document.createElement("div");
+    notice.style.background = "#fffbeb";
+    notice.style.border = "1px solid #fde68a";
+    notice.style.color = "#92400e";
+    notice.style.padding = "12px 18px";
+    notice.style.borderRadius = "10px";
+    notice.style.marginBottom = "20px";
+    notice.style.display = "flex";
+    notice.style.alignItems = "center";
+    notice.style.gap = "12px";
+    notice.innerHTML = `<i class="fas fa-info-circle" style="font-size:1.3rem; color:#d97706;"></i>
+      <div>
+        <strong>No direct buses found for "${searchFrom} &rarr; ${searchTo}".</strong>
+        <div>Showing all ${filtered.length} available daily Musafir Travels Maharashtra schedules below:</div>
+      </div>`;
+    container.appendChild(notice);
+  }
   if (resultsCount) resultsCount.innerText = `${filtered.length} Buses Found`;
 
   container.innerHTML = "";
@@ -841,18 +1539,70 @@ function submitPassengerForm(e) {
 // 5. Payment & Booking Finalization
 // ==========================================
 
+
+let upiTimerInterval = null;
+
 function openPaymentModal() {
   const payModal = document.getElementById("payment-modal");
   if (!payModal) return;
 
-  const count = currentBookingState.selectedSeats.length;
-  const baseTotal = count * currentBookingState.bus.price;
+  const state = currentBookingState;
+  const count = (state.selectedSeats || []).length;
+  const baseTotal = count * (state.bus ? state.bus.price : 750);
   const gst = Math.round(baseTotal * 0.05);
-  const total = Math.max(0, baseTotal + gst - currentBookingState.seniorDiscount - currentBookingState.couponDiscount);
+  const total = Math.max(
+    0,
+    baseTotal + gst - (state.seniorDiscount || 0) - (state.couponDiscount || 0)
+  );
 
-  document.getElementById("pay-modal-amount").innerText = `Rs ${total}`;
-  document.getElementById("pay-modal-seats").innerText = currentBookingState.selectedSeats.join(", ");
-  document.getElementById("pay-modal-route").innerText = `${currentBookingState.bus.from} to ${currentBookingState.bus.to}`;
+  const amtEl = document.getElementById("pay-modal-amount");
+  if (amtEl) amtEl.innerText = `Rs. ${total}`;
+
+  const qrAmtEl = document.getElementById("qr-payable-amount");
+  if (qrAmtEl) qrAmtEl.innerText = `Rs. ${total}`;
+
+
+
+  const seatsEl = document.getElementById("pay-modal-seats");
+  if (seatsEl) seatsEl.innerText = (state.selectedSeats || []).join(", ") || "None";
+
+  const routeEl = document.getElementById("pay-modal-route");
+  if (routeEl && state.bus) {
+    routeEl.innerText = `${state.bus.from} to ${state.bus.to}`;
+  }
+
+  const pnrCode = state.pnr || `MT${Date.now()}`;
+
+  // Save the selected booking details for payment & confirmation
+  window.currentBooking = {
+    pnr: pnrCode,
+    busId: state.bus ? state.bus.id : 101,
+    operator: state.bus ? state.bus.operator : "Musafir Travels Luxury AC Sleeper",
+    busType: state.bus ? state.bus.busType : "AC Sleeper",
+    busNumber: state.bus ? state.bus.busNumber : "MH-20-BT-9921",
+    from: state.bus ? state.bus.from : "Chhatrapati Sambhajinagar (Aurangabad)",
+    to: state.bus ? state.bus.to : "Mumbai",
+    departureTime: state.bus ? state.bus.departureTime : "09:30 PM",
+    arrivalTime: state.bus ? state.bus.arrivalTime : "05:30 AM",
+    duration: state.bus ? state.bus.duration : "8h 00m",
+    journeyDate: state.journeyDate || new Date().toISOString().slice(0, 10),
+    boardingPoint: state.boardingPoint || (state.bus?.boardingPoints?.[0]?.name || "Baba Petrol Pump Musafir Office"),
+    droppingPoint: state.droppingPoint || (state.bus?.droppingPoints?.[0]?.name || "Dadar East Asiad Stand"),
+    seats: [...(state.selectedSeats || [])],
+    passengers: state.passengers || [],
+    contactEmail: state.contactEmail || "passenger@musafir.com",
+    contactPhone: state.contactPhone || "9876543210",
+    baseFare: baseTotal,
+    gst: gst,
+    seniorDiscount: state.seniorDiscount || 0,
+    couponDiscount: state.couponDiscount || 0,
+    totalFare: total,
+    couponUsed: state.couponUsed || "NONE",
+    bookingDate: new Date().toISOString().slice(0, 10)
+  };
+
+  // Render Dynamic UPI QR Code
+  initUPIPaymentQRCode(total, pnrCode);
 
   payModal.style.display = "flex";
 }
@@ -860,6 +1610,10 @@ function openPaymentModal() {
 function closePaymentModal() {
   const modal = document.getElementById("payment-modal");
   if (modal) modal.style.display = "none";
+  if (upiTimerInterval) {
+    clearInterval(upiTimerInterval);
+    upiTimerInterval = null;
+  }
 }
 
 function selectPayTab(tabName) {
@@ -869,69 +1623,154 @@ function selectPayTab(tabName) {
 
   const contents = document.querySelectorAll(".pay-tab-content");
   contents.forEach(c => c.style.display = "none");
-  document.getElementById(`pay-content-${tabName}`).style.display = "block";
+  const target = document.getElementById(`pay-content-${tabName}`);
+  if (target) target.style.display = "block";
 }
 
-function processPayment(method) {
+function initUPIPaymentQRCode(amount, pnr) {
+  const container = document.getElementById("upi-qrcode-container");
+  if (!container) return;
+
+  const upiId = "musafirtravels@okhdfcbank";
+  const payeeName = "Musafir Travels";
+  const note = `BusTicket-${pnr}`;
+  // Standard NPCI UPI URI
+  const upiUri = `upi://pay?pa=${encodeURIComponent(upiId)}&pn=${encodeURIComponent(payeeName)}&am=${amount.toFixed(2)}&tn=${encodeURIComponent(note)}&cu=INR`;
+
+  container.innerHTML = "";
+
+  if (typeof window.QRCode !== "undefined") {
+    try {
+      new window.QRCode(container, {
+        text: upiUri,
+        width: 175,
+        height: 175,
+        colorDark: "#0f172a",
+        colorLight: "#ffffff"
+      });
+    } catch (e) {
+      console.error("QR render error:", e);
+      container.innerHTML = `<div style="text-align:center; padding:15px; color:#475569;"><i class="fas fa-qrcode" style="font-size:3.5rem; color:#d31f1f;"></i><br><small style="font-weight:600;">Scan with UPI App</small></div>`;
+    }
+  } else {
+    container.innerHTML = `<div style="text-align:center; padding:15px; color:#475569;"><i class="fas fa-qrcode" style="font-size:3.5rem; color:#d31f1f;"></i><br><small style="font-weight:600;">Scan with UPI App</small></div>`;
+  }
+
+  // 5 Minute Dynamic Expiry Timer
+  if (upiTimerInterval) clearInterval(upiTimerInterval);
+  let timeLeft = 300;
+  const timerEl = document.getElementById("qr-timer-seconds");
+
+  function updateTimer() {
+    const mins = Math.floor(timeLeft / 60);
+    const secs = timeLeft % 60;
+    if (timerEl) {
+      timerEl.innerText = `${mins.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+    }
+    if (timeLeft <= 0) {
+      clearInterval(upiTimerInterval);
+      if (timerEl) timerEl.innerText = "Expired (Refresh)";
+    }
+    timeLeft--;
+  }
+  updateTimer();
+  upiTimerInterval = setInterval(updateTimer, 1000);
+}
+
+function copyUPIID() {
+  const upi = "musafirtravels@okhdfcbank";
+  navigator.clipboard.writeText(upi).then(() => {
+    const btn = document.getElementById("btn-copy-upi");
+    if (btn) {
+      const orig = btn.innerHTML;
+      btn.innerHTML = `<i class="fas fa-check"></i> Copied!`;
+      btn.style.background = "#dcfce7";
+      btn.style.color = "#15803d";
+      setTimeout(() => {
+        btn.innerHTML = orig;
+        btn.style.background = "";
+        btn.style.color = "";
+      }, 2000);
+    }
+  }).catch(() => {
+    alert("UPI ID: " + upi);
+  });
+}
+
+async function confirmUPIPayment() {
+  const booking = window.currentBooking;
+  if (!booking || !booking.pnr || !Array.isArray(booking.seats) || booking.seats.length === 0) {
+    alert("Booking session expired. Please select your seats again.");
+    return;
+  }
+
+  const utrInput = document.getElementById("upi-ref-utr");
+  const utr = utrInput ? utrInput.value.trim() : "";
+
   const overlay = document.getElementById("payment-processing-overlay");
   if (overlay) overlay.style.display = "flex";
+
+  booking.paymentMethod = utr ? `UPI Dynamic QR (UTR: ${utr})` : "UPI Dynamic QR";
+  booking.status = "CONFIRMED";
+
+  try {
+    await DatabaseAPI.saveBooking(booking);
+  } catch (err) {
+    console.warn("Local storage fallback for booking save:", err);
+  }
+
+  localStorage.setItem("musafir_last_booking", JSON.stringify(booking));
 
   setTimeout(() => {
     if (overlay) overlay.style.display = "none";
     closePaymentModal();
-    finalizeBooking(method);
-  }, 1800);
+    window.location.href = `confirmation.html?pnr=${encodeURIComponent(booking.pnr)}`;
+  }, 1200);
 }
 
-async function finalizeBooking(paymentMethod) {
-  const bus = currentBookingState.bus;
-  const seats = currentBookingState.selectedSeats;
-  const count = seats.length;
-  const baseTotal = count * bus.price;
-  const gst = Math.round(baseTotal * 0.05);
-  const total = Math.max(0, baseTotal + gst - currentBookingState.seniorDiscount - currentBookingState.couponDiscount);
-
-  const pnr = "MSF-" + Math.floor(100000 + Math.random() * 900000);
-  const now = new Date();
-  const dateStr = now.toISOString().split("T")[0] + " " + now.toTimeString().split(" ")[0].slice(0, 5);
-
-  const urlParams = new URLSearchParams(window.location.search);
-  const journeyDate = urlParams.get('date') || new Date().toISOString().split("T")[0];
-
-  const newBooking = {
-    pnr: pnr,
-    busId: bus.id,
-    operator: bus.operator,
-    busType: bus.busType,
-    from: bus.from,
-    to: bus.to,
-    journeyDate: journeyDate,
-    departureTime: bus.departureTime,
-    arrivalTime: bus.arrivalTime,
-    boardingPoint: currentBookingState.selectedBoarding,
-    droppingPoint: currentBookingState.selectedDropping,
-    seats: seats,
-    passengers: currentBookingState.passengers,
-    contactEmail: currentBookingState.contactEmail,
-    contactPhone: currentBookingState.contactPhone,
-    baseFare: baseTotal,
-    gst: gst,
-    seniorDiscount: currentBookingState.seniorDiscount,
-    couponDiscount: currentBookingState.couponDiscount,
-    totalFare: total,
-    couponUsed: currentBookingState.appliedCoupon || "NONE",
-    paymentMethod: paymentMethod || "UPI",
-    bookingDate: dateStr,
-    status: "CONFIRMED"
+async function processPayment(method) {
+  const overlay = document.getElementById("payment-processing-overlay");
+  const showOverlay = (show) => {
+    if (overlay) overlay.style.display = show ? "flex" : "none";
   };
 
-  await DatabaseAPI.saveBooking(newBooking);
-  showETicketModal(newBooking);
-}
+  const booking = window.currentBooking;
+  if (!booking || !booking.pnr || !Array.isArray(booking.seats) || booking.seats.length === 0) {
+    alert("Booking session missing. Please select your bus and seats again.");
+    return;
+  }
 
-// ==========================================
-// 6. E-Ticket View & Print
-// ==========================================
+  // 1. Musafir Cash Wallet
+  if (method === "Musafir Cash Wallet") {
+    showOverlay(true);
+    booking.paymentMethod = "Musafir Cash Wallet";
+    booking.status = "CONFIRMED";
+    await DatabaseAPI.saveBooking(booking);
+    localStorage.setItem("musafir_last_booking", JSON.stringify(booking));
+    setTimeout(() => {
+      showOverlay(false);
+      closePaymentModal();
+      window.location.href = `confirmation.html?pnr=${encodeURIComponent(booking.pnr)}`;
+    }, 1200);
+    return;
+  }
+
+  // 3. Net Banking
+  if (method === "Net Banking") {
+    const bank = document.getElementById("bank-select")?.value || "HDFC";
+    showOverlay(true);
+    booking.paymentMethod = `Net Banking (${bank})`;
+    booking.status = "CONFIRMED";
+    await DatabaseAPI.saveBooking(booking);
+    localStorage.setItem("musafir_last_booking", JSON.stringify(booking));
+    setTimeout(() => {
+      showOverlay(false);
+      closePaymentModal();
+      window.location.href = `confirmation.html?pnr=${encodeURIComponent(booking.pnr)}`;
+    }, 1200);
+    return;
+  }
+}
 
 function showETicketModal(booking) {
   const modal = document.getElementById("ticket-modal");
@@ -1611,7 +2450,7 @@ async function renderAdminBookings() {
       <td><strong>${b.pnr}</strong></td>
       <td>${b.from} to ${b.to}</td>
       <td>${b.journeyDate} (${b.departureTime})</td>
-      <td>${b.passengers.map(p=>p.name).join(", ")}</td>
+      <td>${b.passengers.map(p => p.name).join(", ")}</td>
       <td>Rs ${b.totalFare}</td>
       <td><span class="status-badge ${b.status.toLowerCase()}">${b.status}</span></td>
     </tr>

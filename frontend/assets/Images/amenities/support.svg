@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <!-- Headset headband -->
+  <path d="M14 34 C14 20 22 12 32 12 C42 12 50 20 50 34" fill="none" stroke="#0284c7" stroke-width="4" stroke-linecap="round"/>
+  <!-- Ear cups -->
+  <rect x="10" y="30" width="8" height="14" rx="4" fill="#0369a1"/>
+  <rect x="46" y="30" width="8" height="14" rx="4" fill="#0369a1"/>
+  <!-- Mic arm -->
+  <path d="M48 40 Q46 52 34 52" fill="none" stroke="#475569" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="32" cy="52" r="3" fill="#0284c7"/>
+  <!-- 24/7 text bubble -->
+  <circle cx="32" cy="26" r="8" fill="#ef4444"/>
+  <path d="M28 26 L36 26 M32 22 L32 30" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+</svg>

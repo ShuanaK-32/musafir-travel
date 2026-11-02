@@ -1,154 +1,353 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard - Musafir Travels</title>
-    
+
+    <title>Admin Control Center | Musafir Travels</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../css/styles.css">
 </head>
-<body>
 
-    <!-- Top Contact Bar -->
-    <div style="background: #111; color: #ccc; padding: 6px 6%; font-size: 0.85rem; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222;">
-        <div>
-            <span style="margin-right: 20px;"><i class="fas fa-phone-alt" style="color:var(--primary-red);"></i> Helpline: <strong style="color:white;">80552 06206</strong></span>
-            <span><i class="fas fa-envelope" style="color:var(--primary-red);"></i> Email: <strong style="color:white;">musafir.travels999@gmail.com</strong></span>
+<body class="admin-page">
+
+    <!-- Admin Contact / Status Bar -->
+    <div class="admin-topbar">
+        <div class="admin-contact">
+            <span><i class="fas fa-phone-alt"></i> Helpline: 80552 06206</span>
+            <span><i class="fas fa-envelope"></i> musafir.travels999@gmail.com</span>
         </div>
-        <div>
-            <span><i class="fas fa-shield-alt" style="color:var(--primary-red);"></i> Musafir Central Administration</span>
+
+        <div class="admin-security">
+            Musafir Central Administration
         </div>
     </div>
 
-    <!-- Navigation Bar -->
-    <nav class="navbar">
-        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
-            <img src="logo.jpg" alt="Musafir Logo" class="nav-logo">
+    <!-- Admin Navigation -->
+    <nav class="navbar admin-navbar">
+
+        <a href="#admin-dashboard-root" class="logo admin-logo">
+            <img
+                src="../assets/Images/Musafir_logo.jpg"
+                alt="Musafir Travels Logo"
+                class="nav-logo"
+            >
             <span>Musafir Travels</span>
-            <span style="background: rgba(255, 255, 255, 0.2); color: white; border: 1px solid rgba(255,255,255,0.4); padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; margin-left: 8px; letter-spacing: 0.5px;">ADMIN PORTAL</span>
-        </div>
-        <div class="nav-links">
-            <a href="index.html"><i class="fas fa-globe"></i> Main Website</a>
-            <a href="search.html"><i class="fas fa-bus"></i> Search Buses</a>
-            <a href="admin.html" class="active"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
-            <div id="nav-auth-links">
-                <button class="btn-nav" onclick="logoutUser()" style="background: white; color: var(--primary-red); border: none; font-weight: 600;"><i class="fas fa-sign-out-alt"></i> Logout</button>
-            </div>
+            <span class="admin-badge">ADMIN</span>
+        </a>
+
+        <div class="nav-links admin-nav-links">
+
+            <a href="#admin-dashboard-root" class="active">
+                Dashboard
+            </a>
+
+            <a href="#buses">
+                Manage Buses
+            </a>
+
+            <a href="#bookings">
+                Bookings
+            </a>
+
+            <a href="#users">
+                Users
+            </a>
+
+            <button
+                type="button"
+                class="admin-logout"
+                onclick="logoutUser()"
+            >
+                Logout
+            </button>
+
         </div>
     </nav>
 
-    <div id="admin-dashboard-root" style="max-width: 1200px; margin: 2.5rem auto; padding: 0 20px;">
-        
-        <!-- Header Banner with Breadcrumb & Admin Details -->
-        <div style="background: white; border-radius: var(--radius-md); padding: 1.75rem 2rem; margin-bottom: 2rem; box-shadow: var(--shadow-sm); border-left: 5px solid var(--primary-red); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;">
+    <main id="admin-dashboard-root" class="admin-main">
+
+        <!-- Dashboard Heading -->
+        <section class="admin-welcome">
             <div>
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
-                    <span style="background: #fee2e2; color: var(--primary-red); padding: 3px 10px; border-radius: 6px; font-size: 0.8rem; font-weight: 700;">
-                        <i class="fas fa-shield-alt"></i> ADMINISTRATOR
-                    </span>
-                    <span style="font-size: 0.85rem; color: var(--text-muted);">
-                        <i class="fas fa-database"></i> SQLite Live Connected
-                    </span>
-                </div>
-                <h1 style="font-size: 1.85rem; font-weight: 800; color: var(--pure-black); margin-bottom: 4px;">
-                    System Administrator Dashboard
-                </h1>
-                <p style="color: var(--text-muted); font-size: 0.95rem; margin: 0;">
-                    Real-time oversight for Maharashtra bus routes, bookings, ticket revenue, and passenger accounts.
+                <span class="admin-eyebrow">
+                    ADMINISTRATOR
+                </span>
+
+                <h1>System Administrator Dashboard</h1>
+
+                <p>
+                    Manage your bus fleet, bookings, passengers and
+                    transport operations from one place.
                 </p>
             </div>
-            <div style="display: flex; gap: 10px; align-items: center;">
-                <button class="btn-primary" onclick="initAdminPanel()" style="padding: 10px 18px; font-size: 0.9rem;">
-                    <i class="fas fa-sync-alt"></i> Refresh Data
-                </button>
-                <a href="search.html" class="btn-secondary-sm" style="padding: 10px 16px; font-size: 0.9rem; text-decoration: none;">
-                    <i class="fas fa-search"></i> Book a Ticket
-                </a>
-            </div>
-        </div>
 
-        <!-- 1. Stats Analytics Grid (4 Aligned Cards) -->
-        <div id="admin-stats-cards" class="admin-stats-grid" style="margin-bottom: 2.5rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px;">
-            <!-- Rendered dynamically by script.js -->
-        </div>
+            <button
+                type="button"
+                class="admin-refresh"
+                onclick="initAdminPanel()"
+            >
+                Refresh Data
+            </button>
+        </section>
 
-        <!-- 2. Fleet Management Section -->
-        <div class="admin-section-card shadow-sm" style="background: white; border-radius: var(--radius-md); padding: 2rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 40px; height: 40px; border-radius: 8px; background: #fee2e2; display: flex; align-items: center; justify-content: center; color: var(--primary-red); font-size: 1.2rem;">
-                        <i class="fas fa-bus"></i>
-                    </div>
-                    <div>
-                        <h3 style="color: var(--pure-black); font-size: 1.25rem; font-weight: 700; margin: 0;">Maharashtra Active Bus Fleet</h3>
-                        <small style="color: var(--text-muted);">Real-time route timetables, seating layouts, and fare structures</small>
-                    </div>
+        <!-- Dashboard Statistics: Keep existing JavaScript rendering -->
+        <section
+            id="admin-stats-cards"
+            class="admin-stats-grid"
+            aria-label="Dashboard statistics"
+        >
+            <!-- Statistics are rendered by script.js -->
+        </section>
+
+        <!-- Bus Management -->
+        <section id="buses" class="admin-section-card">
+
+            <div class="admin-section-heading">
+                <div>
+                    <h2>Bus Fleet Management</h2>
+                    <p>Bus operators, routes, schedules, fares and capacity</p>
                 </div>
             </div>
-            <div style="overflow-x: auto;">
+
+            <div class="admin-table-wrap">
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th style="padding: 14px 18px;">Bus ID</th>
-                            <th style="padding: 14px 18px;">Operator & Bus No.</th>
-                            <th style="padding: 14px 18px;">Route</th>
-                            <th style="padding: 14px 18px;">Timings & Duration</th>
-                            <th style="padding: 14px 18px;">Fare</th>
-                            <th style="padding: 14px 18px;">Capacity</th>
+                            <th>Bus ID</th>
+                            <th>Operator &amp; Bus No.</th>
+                            <th>Route</th>
+                            <th>Timings &amp; Duration</th>
+                            <th>Fare</th>
+                            <th>Capacity</th>
                         </tr>
                     </thead>
+
                     <tbody id="admin-buses-table-body">
-                        <!-- Rendered dynamically -->
+                        <tr>
+                            <td colspan="6" class="admin-empty">
+                                Bus data will appear here when loaded by the
+                                existing application JavaScript.
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
 
-        <!-- 3. Customer Bookings Section -->
-        <div class="admin-section-card shadow-sm" style="background: white; border-radius: var(--radius-md); padding: 2rem; margin-bottom: 2.5rem; box-shadow: var(--shadow-sm); border: 1px solid var(--border-color);">
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; border-bottom: 1px solid var(--border-color); padding-bottom: 1rem;">
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <div style="width: 40px; height: 40px; border-radius: 8px; background: #fee2e2; display: flex; align-items: center; justify-content: center; color: var(--primary-red); font-size: 1.2rem;">
-                        <i class="fas fa-ticket-alt"></i>
-                    </div>
-                    <div>
-                        <h3 style="color: var(--pure-black); font-size: 1.25rem; font-weight: 700; margin: 0;">Recent Customer Bookings</h3>
-                        <small style="color: var(--text-muted);">Confirmed PNR records, passenger lists, and fare payments</small>
-                    </div>
+        </section>
+
+        <!-- Booking Management -->
+        <section id="bookings" class="admin-section-card">
+
+            <div class="admin-section-heading">
+                <div>
+                    <h2>Customer Bookings</h2>
+                    <p>PNRs, journey information, passenger counts and payments</p>
                 </div>
             </div>
-            <div style="overflow-x: auto;">
+
+            <div class="admin-table-wrap">
                 <table class="admin-table">
                     <thead>
                         <tr>
-                            <th style="padding: 14px 18px;">PNR</th>
-                            <th style="padding: 14px 18px;">Route</th>
-                            <th style="padding: 14px 18px;">Journey Date & Departure</th>
-                            <th style="padding: 14px 18px;">Passengers</th>
-                            <th style="padding: 14px 18px;">Total Fare</th>
-                            <th style="padding: 14px 18px;">Booking Status</th>
+                            <th>PNR</th>
+                            <th>Route</th>
+                            <th>Journey Date &amp; Departure</th>
+                            <th>Passengers</th>
+                            <th>Total Fare</th>
+                            <th>Booking Status</th>
                         </tr>
                     </thead>
+
                     <tbody id="admin-bookings-table-body">
-                        <!-- Rendered dynamically -->
+                        <tr>
+                            <td colspan="6" class="admin-empty">
+                                Booking data will appear here when loaded by
+                                the existing application JavaScript.
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </div>
-        </div>
 
-    </div>
+        </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-bottom">
-            <p>&copy; 2026 Musafir Travels. Admin Control Center.</p>
-        </div>
+        <!-- User Management -->
+        <section id="users" class="admin-section-card">
+
+            <div class="admin-section-heading">
+                <div>
+                    <h2>User Management</h2>
+                    <p>Registered passenger accounts</p>
+                </div>
+            </div>
+
+            <div class="admin-notice">
+                <div>
+                    <strong>User management section</strong>
+                    <p>
+                        The section is ready. To display real registered users,
+                        it must be connected to the existing database and
+                        JavaScript. No user records are fabricated here.
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer class="admin-footer">
+        &copy; 2026 Musafir Travels. Admin Control Center.
     </footer>
 
-    <script src="script.js"></script>
+    <!-- Keep Existing Application JavaScript -->
+    <script src="../js/script.js"></script>
+
+    
+<script>
+    // Admin navigation
+    document.querySelectorAll('.admin-nav-links a[href^="#"]')
+        .forEach(function (link) {
+            link.addEventListener('click', function () {
+                document.querySelectorAll('.admin-nav-links a')
+                    .forEach(function (item) {
+                        item.classList.remove('active');
+                    });
+                this.classList.add('active');
+            });
+        });
+
+    function updateAdminNavigation() {
+        const hash = window.location.hash || '#admin-dashboard-root';
+
+        document.querySelectorAll('.admin-nav-links a[href^="#"]')
+            .forEach(function (link) {
+                link.classList.toggle(
+                    'active',
+                    link.getAttribute('href') === hash
+                );
+            });
+    }
+
+    window.addEventListener('hashchange', updateAdminNavigation);
+    updateAdminNavigation();
+
+    // Safely display values received from the backend
+    function adminEscape(value) {
+        return String(value ?? '').replace(/[&<>"']/g, function (char) {
+            return {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#39;'
+            }[char];
+        });
+    }
+
+    // Load real bookings from the existing backend
+    async function loadAdminBookings() {
+        const tbody = document.getElementById('admin-bookings-table-body');
+
+        tbody.innerHTML =
+            '<tr><td colspan="6" class="admin-empty">Loading bookings...</td></tr>';
+
+        try {
+            const response = await fetch('/api/bookings', {
+                cache: 'no-store'
+            });
+
+            if (!response.ok) {
+                throw new Error('Backend returned HTTP ' + response.status);
+            }
+
+            const result = await response.json();
+
+            // Support either an array or an object containing bookings
+            const bookings = Array.isArray(result)
+                ? result
+                : (result.bookings || result.data || []);
+
+            if (!Array.isArray(bookings) || bookings.length === 0) {
+                tbody.innerHTML =
+                    '<tr><td colspan="6" class="admin-empty">No bookings found.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = bookings.map(function (booking) {
+                const from = booking.from ?? booking.from_city ?? '';
+                const to = booking.to ?? booking.to_city ?? '';
+                const date = booking.journeyDate ?? booking.journey_date ?? '';
+                const departure =
+                    booking.departureTime ?? booking.departure_time ?? '';
+                const passengers = Array.isArray(booking.passengers)
+                    ? booking.passengers.length
+                    : (booking.passengerCount ?? booking.passenger_count ??
+                       (Array.isArray(booking.seats) ? booking.seats.length : 0));
+
+                const fare = Number(
+                    booking.totalFare ?? booking.total_fare ?? 0
+                );
+
+                const status = booking.status ?? 'UNKNOWN';
+                const statusClass =
+                    String(status).toLowerCase() === 'confirmed'
+                        ? 'confirmed'
+                        : String(status).toLowerCase().includes('cancel')
+                            ? 'cancelled'
+                            : 'other';
+
+                return `
+                    <tr>
+                        <td>${adminEscape(booking.pnr ?? booking.booking_id ?? booking.id ?? '—')}</td>
+                        <td>${adminEscape(from)} → ${adminEscape(to)}</td>
+                        <td>${adminEscape(date)} ${adminEscape(departure)}</td>
+                        <td>${adminEscape(passengers)}</td>
+                        <td>₹${Number.isFinite(fare) ? fare.toLocaleString('en-IN') : '0'}</td>
+                        <td>
+                            <span class="admin-booking-status ${statusClass}">
+                                ${adminEscape(status)}
+                            </span>
+                        </td>
+                    </tr>
+                `;
+            }).join('');
+
+        } catch (error) {
+            console.error('Admin bookings could not be loaded:', error);
+
+            tbody.innerHTML =
+                '<tr><td colspan="6" class="admin-empty">' +
+                'Could not load bookings. Check the server and browser console.' +
+                '</td></tr>';
+        }
+    }
+
+    // Keep the refresh button working
+    const previousInitAdminPanel = window.initAdminPanel;
+
+    window.initAdminPanel = async function () {
+        if (typeof previousInitAdminPanel === 'function') {
+            try {
+                await previousInitAdminPanel();
+            } catch (error) {
+                console.error('Existing admin refresh failed:', error);
+            }
+        }
+
+        await loadAdminBookings();
+    };
+
+    // Load bookings when the admin page opens
+    document.addEventListener('DOMContentLoaded', loadAdminBookings);
+</script>
+
+
 </body>
 </html>

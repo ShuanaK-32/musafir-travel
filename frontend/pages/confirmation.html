@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Confirmed - Musafir Travels</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="../css/styles.css">
+
+    <style>
+        .confirmation-page {
+            max-width: 820px;
+            margin: 2rem auto 4rem auto;
+            padding: 0 15px;
+        }
+
+        .success-banner {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            padding: 2.2rem 1.5rem;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            margin-bottom: 2rem;
+            border-top: 5px solid #16a34a;
+        }
+
+        .success-icon-wrap {
+            width: 72px;
+            height: 72px;
+            background: #dcfce7;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.25rem auto;
+            color: #16a34a;
+            font-size: 2.4rem;
+        }
+
+        .e-ticket-card {
+            background: #ffffff;
+            border-radius: var(--radius-lg);
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            margin-bottom: 2rem;
+        }
+
+        .ticket-header-band {
+            background: var(--pure-black);
+            color: #ffffff;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .ticket-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .ticket-brand img {
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            object-fit: cover;
+        }
+
+        .ticket-pnr-tag {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 14px;
+            border-radius: 8px;
+            text-align: right;
+        }
+
+        .ticket-route-strip {
+            background: #f8fafc;
+            border-bottom: 1px dashed #cbd5e1;
+            padding: 1.25rem 1.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .ticket-body-grid {
+            padding: 1.5rem 1.75rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .ticket-meta-label {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .ticket-meta-val {
+            font-size: 0.98rem;
+            font-weight: 600;
+            color: #1e293b;
+        }
+
+        .ticket-passengers-section {
+            padding: 0 1.75rem 1.5rem 1.75rem;
+        }
+
+        .passengers-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+            margin-top: 8px;
+        }
+
+        .passengers-table th {
+            background: #f1f5f9;
+            padding: 8px 12px;
+            text-align: left;
+            font-weight: 600;
+            color: #475569;
+            border-bottom: 1px solid #cbd5e1;
+        }
+
+        .passengers-table td {
+            padding: 10px 12px;
+            border-bottom: 1px solid #f1f5f9;
+            color: #334155;
+        }
+
+        .ticket-footer-summary {
+            background: #f8fafc;
+            padding: 1.25rem 1.75rem;
+            border-top: 1px solid #e2e8f0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .status-badge-confirmed {
+            background: #dcfce7;
+            color: #15803d;
+            border: 1px solid #86efac;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .action-bar-btn {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        @media print {
+            .navbar, .action-bar-btn, .nav-links, footer, .not-printable {
+                display: none !important;
+            }
+            .confirmation-page {
+                margin: 0 !important;
+                padding: 0 !important;
+                max-width: 100% !important;
+            }
+            .e-ticket-card {
+                box-shadow: none !important;
+                border: 1px solid #333 !important;
+            }
+            body {
+                background: #ffffff !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar not-printable">
+        <div class="logo" onclick="window.location.href='index.html'" style="cursor:pointer;">
+            <img src="../assets/Images/Musafir_logo.jpg" alt="Musafir Logo" class="nav-logo">
+            Musafir Travels
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="search.html">Search Buses</a>
+            <a href="bookings.html">My Bookings</a>
+            <a href="refunds.html">Refunds & Cancel</a>
+            <a href="offers.html">Offers & Wallet</a>
+            <div id="nav-auth-links">
+                <a href="bookings.html" class="btn-nav">
+                    <i class="fas fa-ticket-alt"></i> My Tickets
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="confirmation-page">
+        <!-- Success Banner -->
+        <div class="success-banner">
+            <div class="success-icon-wrap">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <h2 style="color: #166534; margin-bottom: 0.5rem; font-weight: 700;">Payment Successful!</h2>
+            <p style="color: #475569; font-size: 1.05rem; margin-bottom: 1rem;">
+                Your bus ticket has been confirmed and registered in the Musafir Travels reservation database.
+            </p>
+            <div class="status-badge-confirmed">
+                <i class="fas fa-shield-alt"></i> Booking Confirmed & Verified
+            </div>
+        </div>
+
+        <!-- Official E-Ticket Card -->
+        <div class="e-ticket-card" id="e-ticket-print-area">
+            <div class="ticket-header-band">
+                <div class="ticket-brand">
+                    <img src="../assets/Images/Musafir_logo.jpg" alt="Musafir Travels">
+                    <div>
+                        <div style="font-weight: 700; font-size: 1.15rem; letter-spacing: 0.5px;">MUSAFIR TRAVELS</div>
+                        <div style="font-size: 0.78rem; color: #94a3b8;">Official Electronic Ticket & Boarding Pass</div>
+                    </div>
+                </div>
+                <div class="ticket-pnr-tag">
+                    <div style="font-size: 0.72rem; color: #cbd5e1; text-transform: uppercase;">PNR Number</div>
+                    <div id="ticket-pnr" style="font-size: 1.15rem; font-weight: 800; color: #ffffff; letter-spacing: 1px;">MT-LOADING</div>
+                </div>
+            </div>
+
+            <div class="ticket-route-strip">
+                <div>
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Departure City</div>
+                    <div id="ticket-from" style="font-size: 1.25rem; font-weight: 700; color: #0f172a;">Origin</div>
+                    <div id="ticket-departure-time" style="font-size: 0.85rem; color: var(--primary-red); font-weight: 600;">Time</div>
+                </div>
+                <div style="text-align: center; color: var(--primary-red); font-size: 1.4rem;">
+                    <i class="fas fa-arrow-right"></i>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">Destination City</div>
+                    <div id="ticket-to" style="font-size: 1.25rem; font-weight: 700; color: #0f172a;">Destination</div>
+                    <div id="ticket-arrival-time" style="font-size: 0.85rem; color: #166534; font-weight: 600;">Time</div>
+                </div>
+            </div>
+
+            <div class="ticket-body-grid">
+                <div>
+                    <div class="ticket-meta-label">Bus Operator</div>
+                    <div class="ticket-meta-val" id="ticket-operator">Musafir Travels</div>
+                </div>
+                <div>
+                    <div class="ticket-meta-label">Bus / Vehicle No.</div>
+                    <div class="ticket-meta-val" id="ticket-bus-number">MH-20-BT-9921</div>
+                </div>
+                <div>
+                    <div class="ticket-meta-label">Bus Type</div>
+                    <div class="ticket-meta-val" id="ticket-bus-type">AC Sleeper (2+1)</div>
+                </div>
+                <div>
+                    <div class="ticket-meta-label">Journey Date</div>
+                    <div class="ticket-meta-val" id="ticket-journey-date">--</div>
+                </div>
+                <div>
+                    <div class="ticket-meta-label">Reserved Seats</div>
+                    <div class="ticket-meta-val" id="ticket-seats" style="color: var(--primary-red); font-size: 1.15rem;">--</div>
+                </div>
+                <div>
+                    <div class="ticket-meta-label">Payment Mode</div>
+                    <div class="ticket-meta-val" id="ticket-payment-method">UPI / QR Code</div>
+                </div>
+                <div>
+                    <div class="ticket-meta-label">Boarding Point</div>
+                    <div class="ticket-meta-val" id="ticket-boarding">Baba Petrol Pump Office</div>
+                </div>
+                <div>
+                    <div class="ticket-meta-label">Dropping Point</div>
+                    <div class="ticket-meta-val" id="ticket-dropping">Dadar East Asiad Stand</div>
+                </div>
+            </div>
+
+            <div class="ticket-passengers-section">
+                <div class="ticket-meta-label" style="margin-bottom: 6px;">Passenger Details</div>
+                <table class="passengers-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Passenger Name</th>
+                            <th>Age</th>
+                            <th>Gender</th>
+                            <th>Seat No.</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ticket-passengers-body">
+                        <tr>
+                            <td>1</td>
+                            <td>Primary Passenger</td>
+                            <td>--</td>
+                            <td>--</td>
+                            <td>--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="ticket-footer-summary">
+                <div>
+                    <div style="font-size: 0.82rem; color: #64748b;">Contact: <span id="ticket-contact-phone">--</span> | <span id="ticket-contact-email">--</span></div>
+                    <div style="font-size: 0.78rem; color: #94a3b8; margin-top: 3px;">Booked on: <span id="ticket-booked-date">--</span></div>
+                </div>
+                <div style="text-align: right;">
+                    <div style="font-size: 0.82rem; color: #64748b;">Total Fare Paid (incl. GST)</div>
+                    <div id="ticket-total-fare" style="font-size: 1.45rem; font-weight: 800; color: #166534;">Rs. 0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-bar-btn not-printable">
+            <button type="button" class="btn-primary" onclick="window.print()" style="padding: 12px 24px; font-weight: 600;">
+                <i class="fas fa-print"></i> Print / Download Ticket PDF
+            </button>
+            <a href="bookings.html" class="btn-secondary" style="padding: 12px 24px; font-weight: 600;">
+                <i class="fas fa-ticket-alt"></i> View My Bookings
+            </a>
+            <a href="index.html" class="btn-secondary" style="padding: 12px 24px; font-weight: 600;">
+                <i class="fas fa-home"></i> Book Another Bus
+            </a>
+        </div>
+    </div>
+
+    <!-- Script to populate ticket -->
+    <script src="../js/script.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", async function () {
+            const urlParams = new URLSearchParams(window.location.search);
+            const pnrParam = urlParams.get("pnr");
+
+            let booking = null;
+
+            // 1. Try fetching from SQLite API
+            if (pnrParam) {
+                try {
+                    const apiBase = (window.location.origin && window.location.origin.startsWith("http")) ? window.location.origin : "http://localhost:5000";
+                    const res = await fetch(`${apiBase}/api/bookings`);
+                    if (res && res.ok) {
+                        const allBookings = await res.json();
+                        booking = allBookings.find(b => b.pnr === pnrParam);
+                    }
+                } catch (e) {
+                    console.log("Could not fetch remote bookings", e);
+                }
+            }
+
+            // 2. Try IndexedDB / localStorage fallback
+            if (!booking) {
+                const stored = localStorage.getItem("musafir_last_booking");
+                if (stored) {
+                    try {
+                        const parsed = JSON.parse(stored);
+                        if (!pnrParam || parsed.pnr === pnrParam) {
+                            booking = parsed;
+                        }
+                    } catch (e) {}
+                }
+            }
+
+            if (!booking && pnrParam) {
+                booking = {
+                    pnr: pnrParam,
+                    operator: "Musafir Travels Luxury AC Sleeper",
+                    busNumber: "MH-20-BT-9921",
+                    busType: "AC Sleeper",
+                    from: "Chhatrapati Sambhajinagar (Aurangabad)",
+                    to: "Mumbai",
+                    departureTime: "09:30 PM",
+                    arrivalTime: "05:30 AM",
+                    journeyDate: new Date().toISOString().slice(0, 10),
+                    seats: ["L1"],
+                    passengers: [{ name: "Passenger 1", age: 28, gender: "Male", seat: "L1" }],
+                    totalFare: 893,
+                    paymentMethod: "UPI Dynamic QR",
+                    boardingPoint: "Baba Petrol Pump Musafir Office",
+                    droppingPoint: "Dadar East Asiad Stand",
+                    contactPhone: "9876543210",
+                    contactEmail: "passenger@musafir.com",
+                    bookingDate: new Date().toISOString().slice(0, 10)
+                };
+            }
+
+            if (booking) {
+                document.getElementById("ticket-pnr").innerText = booking.pnr;
+                document.getElementById("ticket-from").innerText = booking.from;
+                document.getElementById("ticket-to").innerText = booking.to;
+                document.getElementById("ticket-departure-time").innerText = "Dep: " + (booking.departureTime || "--");
+                document.getElementById("ticket-arrival-time").innerText = "Arr: " + (booking.arrivalTime || "--");
+                document.getElementById("ticket-operator").innerText = booking.operator || "Musafir Travels";
+                document.getElementById("ticket-bus-number").innerText = booking.busNumber || "MH-20-BT-9921";
+                document.getElementById("ticket-bus-type").innerText = booking.busType || "AC Sleeper";
+                document.getElementById("ticket-journey-date").innerText = booking.journeyDate || "--";
+                document.getElementById("ticket-seats").innerText = Array.isArray(booking.seats) ? booking.seats.join(", ") : (booking.seats || "--");
+                document.getElementById("ticket-payment-method").innerText = booking.paymentMethod || "UPI / QR Code";
+                document.getElementById("ticket-boarding").innerText = booking.boardingPoint || "Main Terminal";
+                document.getElementById("ticket-dropping").innerText = booking.droppingPoint || "City Drop-off";
+                document.getElementById("ticket-total-fare").innerText = "Rs. " + (booking.totalFare || 0);
+                document.getElementById("ticket-contact-phone").innerText = booking.contactPhone || "9876543210";
+                document.getElementById("ticket-contact-email").innerText = booking.contactEmail || "guest@musafir.com";
+                document.getElementById("ticket-booked-date").innerText = booking.bookingDate || new Date().toISOString().slice(0, 10);
+
+                // Passengers table
+                const pBody = document.getElementById("ticket-passengers-body");
+                if (pBody && Array.isArray(booking.passengers) && booking.passengers.length > 0) {
+                    pBody.innerHTML = "";
+                    booking.passengers.forEach((p, idx) => {
+                        const tr = document.createElement("tr");
+                        tr.innerHTML = `
+                            <td>${idx + 1}</td>
+                            <td><strong>${p.name || "Passenger " + (idx + 1)}</strong></td>
+                            <td>${p.age || "--"}</td>
+                            <td>${p.gender || "--"}</td>
+                            <td><strong style="color:var(--primary-red);">${p.seat || (booking.seats[idx] || "--")}</strong></td>
+                        `;
+                        pBody.appendChild(tr);
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
