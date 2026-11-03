@@ -18,12 +18,22 @@ Then visit: [http://localhost:5000/frontend/pages/index.html](http://localhost:5
 
 ---
 
+## Demonstration Video Walkthrough
+
+Watch the complete end-to-end system walkthrough featuring customer **Zara Khan** and the **System Admin Control Center**:
+
+- **Direct Video Link (MP4)**: [musafir_travel_demo_zara_khan.mp4](demo/musafir_travel_demo_zara_khan.mp4)
+- **WebM Video Link**: [musafir_travel_demo_zara_khan.webm](demo/musafir_travel_demo_zara_khan.webm)
+
+---
+
 ## Default Login Credentials
 
-| Role | Email | Password |
-|---|---|---|
-| **System Admin** | `admin@musafir.com` | `admin123` |
-| **Test Passenger** | `user@musafir.com` | `user123` |
+| Role | Username / Email | Password | Access Scope |
+|---|---|---|---|
+| **Demonstration User** | `Zara Khan` (`zk741725@gmail.com`) | `Zara@2006` | Customer Booking, Seat Selection, Ticket & Wallet |
+| **System Admin** | `admin@musafir.com` | `admin123` | Admin Control Center, Live Revenue, Bookings & Fleet |
+| **Test Passenger** | `user@musafir.com` | `user123` | Standard Customer Account |
 
 ---
 
