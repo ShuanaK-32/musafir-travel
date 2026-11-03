@@ -1601,6 +1601,14 @@ function openPaymentModal() {
     bookingDate: new Date().toISOString().slice(0, 10)
   };
 
+  // Update Card Pay Button Amount
+  const cardAmtEl = document.getElementById("card-pay-btn-amount");
+  if (cardAmtEl) cardAmtEl.innerText = `Rs. ${total}`;
+
+  // Pre-fill demo card values for frictionless testing
+  prefillTestCard();
+  selectPayTab("card");
+
   // Render Dynamic UPI QR Code
   initUPIPaymentQRCode(total, pnrCode);
 
@@ -1614,6 +1622,116 @@ function closePaymentModal() {
     clearInterval(upiTimerInterval);
     upiTimerInterval = null;
   }
+
+function formatCardNumber(input) {
+  let val = input.value.replace(/\D/g, "");
+  val = val.substring(0, 16);
+  let formatted = "";
+  for (let i = 0; i < val.length; i++) {
+    if (i > 0 && i % 4 === 0) formatted += " ";
+    formatted += val[i];
+  }
+  input.value = formatted;
+}
+
+function formatExpiry(input) {
+  let val = input.value.replace(/\D/g, "");
+  val = val.substring(0, 4);
+  if (val.length >= 2) {
+    input.value = val.substring(0, 2) + "/" + val.substring(2);
+  } else {
+    input.value = val;
+  }
+}
+
+function prefillTestCard() {
+  const num = document.getElementById("card-number");
+  const name = document.getElementById("card-name");
+  const exp = document.getElementById("card-expiry");
+  const cvv = document.getElementById("card-cvv");
+  if (num && (!num.value || num.value.trim() === "")) num.value = "4000 0000 0000 0000";
+  if (name && (!name.value || name.value.trim() === "")) name.value = "Rahul Sharma";
+  if (exp && (!exp.value || exp.value.trim() === "")) exp.value = "12/28";
+  if (cvv && (!cvv.value || cvv.value.trim() === "")) cvv.value = "123";
+}
+
+async function processCardPayment() {
+  const booking = window.currentBooking;
+  if (!booking || !booking.pnr || !Array.isArray(booking.seats) || booking.seats.length === 0) {
+    alert("Booking session expired. Please select your bus and seats again.");
+    return;
+  }
+
+  // Ensure card fields have demo data if user left anything blank
+  const numInput = document.getElementById("card-number");
+  const nameInput = document.getElementById("card-name");
+  const expInput = document.getElementById("card-expiry");
+  const cvvInput = document.getElementById("card-cvv");
+
+  let cardNum = numInput ? numInput.value.trim() : "";
+  if (!cardNum) {
+    cardNum = "4000 0000 0000 0000";
+    if (numInput) numInput.value = cardNum;
+  }
+  let cardName = nameInput ? nameInput.value.trim() : "Rahul Sharma";
+  if (!cardName && nameInput) nameInput.value = cardName;
+  if (expInput && !expInput.value.trim()) expInput.value = "12/28";
+  if (cvvInput && !cvvInput.value.trim()) cvvInput.value = "123";
+
+  const cleanNum = cardNum.replace(/\D/g, "");
+  const last4 = cleanNum.length >= 4 ? cleanNum.slice(-4) : "0000";
+
+  const overlay = document.getElementById("payment-processing-overlay");
+  const titleEl = document.getElementById("pay-overlay-title");
+  const subEl = document.getElementById("pay-overlay-sub");
+  const iconEl = document.getElementById("pay-overlay-icon");
+
+  if (overlay) {
+    overlay.style.display = "flex";
+    if (iconEl) iconEl.innerHTML = '<i class="fas fa-spinner fa-spin" style="font-size: 3rem; color: var(--primary-red);"></i>';
+    if (titleEl) {
+      titleEl.innerText = "Connecting to Razorpay Test Gateway...";
+      titleEl.style.color = "var(--primary-red)";
+    }
+    if (subEl) subEl.innerText = "Establishing secure test simulation channel...";
+  }
+
+  // Stage 1: Simulating Gateway Response
+  setTimeout(() => {
+    if (titleEl) titleEl.innerText = "Authorizing Demo Card Payment...";
+    if (subEl) subEl.innerText = `Approving Rs. ${booking.totalFare} on demo card ending in ${last4}...`;
+  }, 700);
+
+  // Stage 2: Success & Persistence
+  setTimeout(async () => {
+    if (iconEl) iconEl.innerHTML = '<i class="fas fa-check-circle" style="font-size: 3.2rem; color: #16a34a;"></i>';
+    if (titleEl) {
+      titleEl.innerText = "Payment Successful!";
+      titleEl.style.color = "#16a34a";
+    }
+    if (subEl) subEl.innerText = "Booking confirmed! Generating your official Musafir Travels E-Ticket...";
+
+    const demoPayId = "pay_test_" + Math.random().toString(36).substring(2, 10).toUpperCase();
+    booking.paymentMethod = `Credit/Debit Card (Razorpay Test Mode - ending in ${last4})`;
+    booking.paymentId = demoPayId;
+    booking.status = "CONFIRMED";
+
+    try {
+      await DatabaseAPI.saveBooking(booking);
+    } catch (err) {
+      console.warn("Local storage fallback for booking save:", err);
+    }
+
+    localStorage.setItem("musafir_last_booking", JSON.stringify(booking));
+
+    setTimeout(() => {
+      if (overlay) overlay.style.display = "none";
+      closePaymentModal();
+      window.location.href = `confirmation.html?pnr=${encodeURIComponent(booking.pnr)}`;
+    }, 900);
+  }, 1400);
+}
+
 }
 
 function selectPayTab(tabName) {
