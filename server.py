@@ -919,8 +919,8 @@ class MusafirHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             row = conn.execute("""
                 SELECT email, password, name, role, phone
                 FROM users
-                WHERE LOWER(email) = LOWER(?) OR LOWER(name) = LOWER(?)
-            """, (email, email)).fetchone()
+                WHERE LOWER(email) = LOWER(?)
+            """, (email,)).fetchone()
 
             if not row or not verify_password(password, row["password"]):
                 return {
