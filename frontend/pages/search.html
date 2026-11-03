@@ -38,36 +38,30 @@
     </nav>
 
     <!-- Header Search Bar -->
-    <div style="background: var(--pure-black); padding: 1.25rem 20px;">
-        <form onsubmit="event.preventDefault(); searchBuses();"
-            style="max-width: 1100px; margin: 0 auto; display: flex; gap: 15px; align-items: flex-end; flex-wrap: wrap;">
-
-            <div class="input-group" style="min-width: 220px;">
-                <label for="from" style="color: #a0aec0;">
-                    <i class="fas fa-bus" style="color:var(--primary-red);"></i>
-                    From
+    <div class="search-header-panel">
+        <form onsubmit="event.preventDefault(); searchBuses();" class="search-modify-form">
+            <div class="input-group">
+                <label for="from">
+                    <i class="fas fa-bus"></i> From
                 </label>
-                <input type="text" id="from" placeholder="Chhatrapati Sambhajinagar" required
-                    style="background: white;">
+                <input type="text" id="from" placeholder="Chhatrapati Sambhajinagar" required>
             </div>
 
-            <div class="input-group" style="min-width: 220px;">
-                <label for="to" style="color: #a0aec0;">
-                    <i class="fas fa-map-pin" style="color:var(--primary-red);"></i>
-                    To
+            <div class="input-group">
+                <label for="to">
+                    <i class="fas fa-map-marker-alt"></i> To
                 </label>
-                <input type="text" id="to" placeholder="Mumbai" required style="background: white;">
+                <input type="text" id="to" placeholder="Mumbai" required>
             </div>
 
-            <div class="input-group" style="min-width: 160px;">
-                <label for="date" style="color: #a0aec0;">
-                    <i class="fas fa-calendar-alt" style="color:var(--primary-red);"></i>
-                    Date
+            <div class="input-group">
+                <label for="date">
+                    <i class="fas fa-calendar-alt"></i> Date
                 </label>
-                <input type="date" id="date" required style="background: white;">
+                <input type="date" id="date" required>
             </div>
 
-            <button type="submit" class="btn-primary" style="height: 44px;">
+            <button type="submit" class="btn-primary search-modify-btn">
                 <i class="fas fa-search"></i> UPDATE SEARCH
             </button>
         </form>
@@ -75,6 +69,11 @@
 
     <!-- Main Layout: Filters + Results -->
     <div class="search-layout">
+        <!-- Mobile Filter Toggle Pill Button -->
+        <button type="button" class="mobile-filter-bar-btn" id="mobileFilterBarBtn" onclick="toggleMobileFilters()">
+            <span><i class="fas fa-sliders-h"></i> Filter &amp; Sort Buses</span>
+            <span class="filter-count-badge">Tap to Toggle</span>
+        </button>
 
         <!-- Filters Sidebar -->
         <aside class="filter-card">

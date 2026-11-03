@@ -15,20 +15,19 @@
 <body>
 
     <!-- Top Contact Bar -->
-    <div style="background:#111;color:#ccc;padding:8px 6%;font-size:0.85rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;border-bottom:1px solid #222;">
-        <div>
-            <span style="margin-right:20px;">
-                <i class="fas fa-phone-alt" style="color:var(--primary-red);"></i>
-                Helpline: <strong style="color:white;font-weight:700;">80552 06206</strong>
-            </span>
-
-            <span>
-                <i class="fas fa-envelope" style="color:var(--primary-red);"></i>
-                Email: <strong style="color:white;font-weight:700;">musafir.travels999@gmail.com</strong>
-            </span>
+    <div class="top-contact-bar">
+        <div class="top-contact-left">
+            <a href="tel:8055206206" class="top-contact-item top-contact-phone">
+                <i class="fas fa-phone-alt"></i>
+                <span>Helpline: <strong>80552 06206</strong></span>
+            </a>
+            <a href="mailto:musafir.travels999@gmail.com" class="top-contact-item top-contact-email">
+                <i class="fas fa-envelope"></i>
+                <span>Email: <strong>musafir.travels999@gmail.com</strong></span>
+            </a>
         </div>
-        <div style="font-size:0.8rem;color:#94a3b8;">
-            <i class="fas fa-shield-alt" style="color:#16a34a;"></i> Official Musafir Travels Booking Platform
+        <div class="top-contact-right">
+            <i class="fas fa-shield-alt"></i> Official Platform
         </div>
     </div>
 
@@ -395,45 +394,32 @@
     </section>
 
     <!-- Popular Routes (No extra pill heading, bold styled main title) -->
-    <section style="background:white;padding:4rem 20px;border-top:1px solid var(--border-color);">
-        <div style="max-width:1200px;margin:0 auto;">
-            <div style="text-align:center;margin-bottom:2.2rem;">
+    <section class="popular-routes-section">
+        <div class="popular-routes-container">
+            <div class="popular-routes-header">
                 <h2 class="section-main-heading">Popular Bus Routes By <span class="text-red">Musafir Travels</span></h2>
                 <p class="section-sub-desc">
                     Daily luxury schedules with direct online seat reservation and dynamic UPI QR payment.
                 </p>
             </div>
 
-            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;">
-
-                <a href="search.html?from=Chhatrapati%20Sambhajinagar%20%28Aurangabad%29&amp;to=Mumbai"
-                   class="btn-secondary-sm"
-                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Aurangabad to Mumbai</span>
-                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 750</strong>
+            <div class="popular-routes-grid">
+                <a href="search.html?from=Chhatrapati%20Sambhajinagar%20%28Aurangabad%29&amp;to=Mumbai" class="popular-route-card">
+                    <span><i class="fas fa-bus"></i> Aurangabad to Mumbai</span>
+                    <strong>Rs 750</strong>
                 </a>
-
-                <a href="search.html?from=Chhatrapati%20Sambhajinagar%20%28Aurangabad%29&amp;to=Pune"
-                   class="btn-secondary-sm"
-                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Aurangabad to Pune</span>
-                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 450</strong>
+                <a href="search.html?from=Chhatrapati%20Sambhajinagar%20%28Aurangabad%29&amp;to=Pune" class="popular-route-card">
+                    <span><i class="fas fa-bus"></i> Aurangabad to Pune</span>
+                    <strong>Rs 450</strong>
                 </a>
-
-                <a href="search.html?from=Mumbai&amp;to=Pune"
-                   class="btn-secondary-sm"
-                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Mumbai to Pune</span>
-                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 600</strong>
+                <a href="search.html?from=Mumbai&amp;to=Pune" class="popular-route-card">
+                    <span><i class="fas fa-bus"></i> Mumbai to Pune</span>
+                    <strong>Rs 600</strong>
                 </a>
-
-                <a href="search.html?from=Pune&amp;to=Nagpur"
-                   class="btn-secondary-sm"
-                   style="padding:16px 20px;font-size:1rem;font-weight:700;background:var(--off-white);display:flex;align-items:center;justify-content:space-between;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,0.03);border:1px solid #e2e8f0;transition:all 0.25s ease;">
-                    <span><i class="fas fa-bus" style="color:var(--primary-red);margin-right:10px;"></i>Pune to Nagpur</span>
-                    <strong style="color:var(--primary-red);font-size:1.15rem;font-weight:800;">Rs 1350</strong>
+                <a href="search.html?from=Pune&amp;to=Nagpur" class="popular-route-card">
+                    <span><i class="fas fa-bus"></i> Pune to Nagpur</span>
+                    <strong>Rs 1350</strong>
                 </a>
-
             </div>
         </div>
     </section>

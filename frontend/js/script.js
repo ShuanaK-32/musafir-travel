@@ -988,6 +988,8 @@ let currentBookingState = {
 document.addEventListener("DOMContentLoaded", async () => {
   await initIndexedDB();
   updateUserAuthNav();
+  initMobileNavigation();
+  initWhyCardsTouch();
 
   if (document.getElementById("bus-list-container")) {
     initSearchPage();
@@ -1037,6 +1039,118 @@ function logoutUser() {
   alert("Logged out successfully.");
   window.location.href = "index.html";
 }
+
+// ==========================================
+// Mobile Navigation, Touch Interactions & Filters
+// ==========================================
+
+function initMobileNavigation() {
+  const navbar = document.querySelector('.navbar');
+  const navLinks = document.querySelector('.nav-links');
+  if (!navbar || !navLinks) return;
+
+  // Auto-inject .nav-mobile-actions if not present
+  let mobileActions = navbar.querySelector('.nav-mobile-actions');
+  if (!mobileActions) {
+    mobileActions = document.createElement('div');
+    mobileActions.className = 'nav-mobile-actions';
+    mobileActions.innerHTML = `
+      <a href="tel:+919822011111" class="mobile-call-pill" title="Call Support">
+        <i class="fas fa-phone-alt"></i> <span>Call</span>
+      </a>
+      <button class="nav-mobile-toggle" aria-label="Toggle Navigation Menu" type="button">
+        <i class="fas fa-bars"></i>
+      </button>
+    `;
+    navbar.appendChild(mobileActions);
+  }
+
+  const toggleBtn = mobileActions.querySelector('.nav-mobile-toggle');
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = navLinks.classList.toggle('mobile-open');
+      const icon = toggleBtn.querySelector('i');
+      if (icon) {
+        icon.className = isOpen ? 'fas fa-times' : 'fas fa-bars';
+      }
+    });
+  }
+
+  // Tap outside closes menu
+  document.addEventListener('click', (e) => {
+    if (!navbar.contains(e.target) && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      const icon = navbar.querySelector('.nav-mobile-toggle i');
+      if (icon) icon.className = 'fas fa-bars';
+    }
+  });
+
+  // Tap on any navigation link closes menu
+  navLinks.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (navLinks.classList.contains('mobile-open')) {
+        navLinks.classList.remove('mobile-open');
+        const icon = navbar.querySelector('.nav-mobile-toggle i');
+        if (icon) icon.className = 'fas fa-bars';
+      }
+    });
+  });
+
+  // Resize resets drawer state
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 768 && navLinks.classList.contains('mobile-open')) {
+      navLinks.classList.remove('mobile-open');
+      const icon = navbar.querySelector('.nav-mobile-toggle i');
+      if (icon) icon.className = 'fas fa-bars';
+    }
+  });
+}
+
+function initWhyCardsTouch() {
+  const whyCards = document.querySelectorAll('.why-card');
+  if (!whyCards.length) return;
+
+  whyCards.forEach((card) => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('a') || e.target.closest('button')) return;
+
+      const wasActive = card.classList.contains('mobile-active');
+      whyCards.forEach((c) => c.classList.remove('mobile-active'));
+      if (!wasActive) {
+        card.classList.add('mobile-active');
+      }
+    });
+  });
+
+  document.addEventListener('click', (e) => {
+    if (!e.target.closest('.why-card')) {
+      whyCards.forEach((c) => c.classList.remove('mobile-active'));
+    }
+  });
+}
+
+function toggleMobileFilters() {
+  const filterCard = document.querySelector('.filter-card');
+  const btn = document.getElementById('mobileFilterBarBtn');
+  if (!filterCard) return;
+
+  const isExpanded = filterCard.classList.toggle('mobile-filter-expanded');
+  if (btn) {
+    if (isExpanded) {
+      btn.innerHTML = '<i class="fas fa-times"></i> Close Filters';
+      btn.style.background = '#dc2626';
+      btn.style.borderColor = '#b91c1c';
+      btn.style.color = '#ffffff';
+    } else {
+      btn.innerHTML = '<i class="fas fa-filter"></i> Filters &amp; Sorting';
+      btn.style.background = '';
+      btn.style.borderColor = '';
+      btn.style.color = '';
+    }
+  }
+}
+window.toggleMobileFilters = toggleMobileFilters;
 
 // ==========================================
 // 3. Search & Bus Listing Engine
