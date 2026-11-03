@@ -18,10 +18,20 @@ Then visit: [http://localhost:5000/frontend/pages/index.html](http://localhost:5
 
 ---
 
+## Demonstration Video Walkthrough
+
+Watch the complete end-to-end website walkthrough (Customer Login, Intercity Bus Search, Interactive 2+1 Sleeper Deck Selection, Dynamic UPI QR Instant Checkout, and Verified Boarding Pass Confirmation) for user **Zara Khan**:
+
+- **Direct Video Link (MP4)**: [musafir_travel_demo_zara_khan.mp4](demo/musafir_travel_demo_zara_khan.mp4)
+- **WebM Video Link**: [musafir_travel_demo_zara_khan.webm](demo/musafir_travel_demo_zara_khan.webm)
+
+---
+
 ## Default Login Credentials
 
-| Role | Email | Password |
+| Role | Username / Email | Password |
 |---|---|---|
+| **Demonstration User** | `Zara Khan` (`zk741725@gmail.com`) | `Zara@2006` |
 | **System Admin** | `admin@musafir.com` | `admin123` |
 | **Test Passenger** | `user@musafir.com` | `user123` |
 

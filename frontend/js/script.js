@@ -758,6 +758,8 @@ function seedIndexedDBIfEmpty() {
         const userStore = tx.objectStore("users");
         userStore.put({ email: "admin@musafir.com", password: "admin123", name: "System Admin", role: "admin", phone: "8055206206" });
         userStore.put({ email: "user@musafir.com", password: "user123", name: "Rahul Sharma", role: "user", phone: "9876543210" });
+        userStore.put({ email: "zk741725@gmail.com", password: "Zara@2006", name: "Zara Khan", role: "user", phone: "9876543211" });
+        userStore.put({ email: "zara khan", password: "Zara@2006", name: "Zara Khan", role: "user", phone: "9876543211" });
 
         const couponStore = tx.objectStore("coupons");
         couponStore.put({ code: "DIWALI20", discountPercent: 20, maxDiscount: 200, minAmount: 300, desc: "Special Diwali Festive Offer - Flat 20% OFF", active: true });
@@ -910,9 +912,17 @@ const DatabaseAPI = {
           const u = req.result;
           if (u && u.password === password) {
             resolve({ status: "SUCCESS", user: { email: u.email, name: u.name, role: u.role, phone: u.phone } });
-          } else {
-            resolve({ status: "ERROR", message: "Invalid email or password." });
+            return;
           }
+          const allReq = store.getAll();
+          allReq.onsuccess = () => {
+            const matched = (allReq.result || []).find(x => (x.name && x.name.toLowerCase() === email.toLowerCase()) || (x.email && x.email.toLowerCase() === email.toLowerCase()));
+            if (matched && matched.password === password) {
+              resolve({ status: "SUCCESS", user: { email: matched.email, name: matched.name, role: matched.role, phone: matched.phone } });
+            } else {
+              resolve({ status: "ERROR", message: "Invalid email or password." });
+            }
+          };
         };
         req.onerror = () => resolve({ status: "ERROR", message: "User account not found." });
       });
