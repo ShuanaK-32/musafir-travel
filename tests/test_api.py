@@ -7,6 +7,7 @@ import unittest
 import sqlite3
 import os
 import json
+import time
 import urllib.request
 import urllib.parse
 
@@ -45,6 +46,44 @@ class TestDatabaseIntegrity(unittest.TestCase):
 
 
 class TestAPIEndpoints(unittest.TestCase):
+    @classmethod
+    def setUpClass(cls):
+        cls.server_thread = None
+        cls.httpd = None
+        # Check if server is already running
+        try:
+            with urllib.request.urlopen(f"{SERVER_URL}/api/buses", timeout=1):
+                return
+        except Exception:
+            pass
+
+        # Attempt to start in-process background server for test execution
+        try:
+            import socketserver
+            import threading
+            import sys
+            if BASE_DIR not in sys.path:
+                sys.path.insert(0, BASE_DIR)
+            from server import MusafirHTTPRequestHandler, init_sqlite_db
+            socketserver.TCPServer.allow_reuse_address = True
+            init_sqlite_db()
+            cls.httpd = socketserver.TCPServer(("127.0.0.1", 5000), MusafirHTTPRequestHandler)
+            cls.server_thread = threading.Thread(target=cls.httpd.serve_forever, daemon=True)
+            cls.server_thread.start()
+            time.sleep(0.4)
+        except Exception:
+            cls.httpd = None
+            cls.server_thread = None
+
+    @classmethod
+    def tearDownClass(cls):
+        if cls.httpd:
+            try:
+                cls.httpd.shutdown()
+                cls.httpd.server_close()
+            except Exception:
+                pass
+
     def test_buses_search(self):
         url = f"{SERVER_URL}/api/buses?from=Mumbai&to=Pune"
         try:
@@ -53,6 +92,72 @@ class TestAPIEndpoints(unittest.TestCase):
                 data = json.loads(resp.read().decode())
                 self.assertIsInstance(data, list)
                 self.assertGreater(len(data), 0)
+        except urllib.error.URLError:
+            self.skipTest("Server is not currently running on port 5000")
+
+    def test_buses_search_valid_route(self):
+        # Seeded route: Chhatrapati Sambhajinagar -> Pune (Buses 104 and 105)
+        url = f"{SERVER_URL}/api/buses?from=Chhatrapati%20Sambhajinagar&to=Pune"
+        try:
+            with urllib.request.urlopen(url, timeout=5) as resp:
+                self.assertEqual(resp.status, 200)
+                data = json.loads(resp.read().decode())
+                self.assertIsInstance(data, list)
+                self.assertEqual(len(data), 2)
+                for bus in data:
+                    self.assertIn("Sambhajinagar", bus["from"])
+                    self.assertEqual(bus["to"], "Pune")
+        except urllib.error.URLError:
+            self.skipTest("Server is not currently running on port 5000")
+
+    def test_buses_search_case_whitespace_and_aliases(self):
+        # Case, whitespace, and alias: '  aurangabad  ' -> '  pune  '
+        url = f"{SERVER_URL}/api/buses?from=%20aurangabad%20&to=%20pune%20"
+        try:
+            with urllib.request.urlopen(url, timeout=5) as resp:
+                self.assertEqual(resp.status, 200)
+                data = json.loads(resp.read().decode())
+                self.assertIsInstance(data, list)
+                self.assertEqual(len(data), 2)
+                for bus in data:
+                    self.assertIn("Sambhajinagar", bus["from"])
+                    self.assertEqual(bus["to"], "Pune")
+        except urllib.error.URLError:
+            self.skipTest("Server is not currently running on port 5000")
+
+    def test_buses_search_nonexistent_route(self):
+        # Route that does not exist in Maharashtra schedule
+        url = f"{SERVER_URL}/api/buses?from=Delhi&to=Kolkata"
+        try:
+            with urllib.request.urlopen(url, timeout=5) as resp:
+                self.assertEqual(resp.status, 200)
+                data = json.loads(resp.read().decode())
+                self.assertIsInstance(data, list)
+                self.assertEqual(len(data), 0, "Nonexistent route must return an empty list")
+        except urllib.error.URLError:
+            self.skipTest("Server is not currently running on port 5000")
+
+    def test_buses_search_same_origin_destination(self):
+        # Origin and destination are identical
+        url = f"{SERVER_URL}/api/buses?from=Mumbai&to=Mumbai"
+        try:
+            with urllib.request.urlopen(url, timeout=5) as resp:
+                self.assertEqual(resp.status, 200)
+                data = json.loads(resp.read().decode())
+                self.assertIsInstance(data, list)
+                self.assertEqual(len(data), 0, "Same origin and destination must return an empty list")
+        except urllib.error.URLError:
+            self.skipTest("Server is not currently running on port 5000")
+
+    def test_buses_unfiltered_backward_compatibility(self):
+        # Unfiltered /api/buses must return all 12 seeded buses
+        url = f"{SERVER_URL}/api/buses"
+        try:
+            with urllib.request.urlopen(url, timeout=5) as resp:
+                self.assertEqual(resp.status, 200)
+                data = json.loads(resp.read().decode())
+                self.assertIsInstance(data, list)
+                self.assertEqual(len(data), 12, "Unfiltered /api/buses must return all 12 buses")
         except urllib.error.URLError:
             self.skipTest("Server is not currently running on port 5000")
 

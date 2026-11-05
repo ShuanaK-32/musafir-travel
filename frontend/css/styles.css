@@ -4499,3 +4499,36 @@ html, body {
     grid-template-columns: 1fr !important;
   }
 }
+
+/* Empty state card for search results */
+.empty-state-card {
+    background: #ffffff;
+    border: 1px solid var(--border-color, #e2e8f0);
+    border-radius: 12px;
+    padding: 40px 24px;
+    text-align: center;
+    color: var(--text-dark, #1e293b);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
+    margin: 20px 0;
+}
+
+.empty-state-card .empty-icon {
+    font-size: 2.5rem;
+    color: var(--primary-red, #dc2626);
+    margin-bottom: 12px;
+}
+
+.empty-state-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 8px;
+    color: var(--text-dark, #1e293b);
+}
+
+.empty-state-card p {
+    font-size: 0.92rem;
+    color: var(--text-muted, #64748b);
+    max-width: 520px;
+    margin: 0 auto 18px;
+    line-height: 1.5;
+}

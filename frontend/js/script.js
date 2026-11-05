@@ -779,19 +779,36 @@ const API_BASE = (typeof window !== "undefined" && window.location && window.loc
 
 // Database Read/Write API Abstraction (IndexedDB + Python REST Server)
 const DatabaseAPI = {
-  getBuses: async function () {
-    let buses = [];
-    try {
-      const res = await fetch(`${API_BASE}/api/buses`);
-      if (res && res.ok) {
-        const data = await res.json();
-        if (Array.isArray(data) && data.length > 0) buses = data;
-      }
-    } catch (e) {
-      console.warn("Backend API not reachable, falling back to local DB");
+  getBuses: async function (filterParams) {
+    let queryStr = "";
+    const hasFilter = Boolean(filterParams && (filterParams.from || filterParams.to || filterParams.date));
+    if (filterParams) {
+      const qp = new URLSearchParams();
+      if (filterParams.from) qp.set("from", filterParams.from);
+      if (filterParams.to) qp.set("to", filterParams.to);
+      if (filterParams.date) qp.set("date", filterParams.date);
+      const s = qp.toString();
+      if (s) queryStr = "?" + s;
     }
 
-    if (buses.length === 0 && dbInstance) {
+    try {
+      const res = await fetch(`${API_BASE}/api/buses${queryStr}`);
+      if (res && res.ok) {
+        const data = await res.json();
+        if (Array.isArray(data)) {
+          return data;
+        }
+      }
+      throw new Error(`Server returned status ${res ? res.status : "error"}`);
+    } catch (e) {
+      console.warn("Backend API not reachable:", e);
+      if (hasFilter) {
+        return { error: true, message: "Couldn't load buses, please retry." };
+      }
+    }
+
+    let buses = [];
+    if (dbInstance) {
       try {
         buses = await new Promise((resolve) => {
           const tx = dbInstance.transaction(["buses"], "readonly");
@@ -1163,12 +1180,12 @@ function searchBuses() {
   const toCity = (document.getElementById('search-to-station')?.value || document.getElementById('to')?.value || '').trim();
   const journeyDate = (document.getElementById('search-onward-date')?.value || document.getElementById('date')?.value || '');
 
-  if (!fromCity || !toCity) {
-    alert("Please select both 'From' and 'To' cities.");
+  if (!fromCity && !toCity) {
+    window.location.href = `search.html`;
     return;
   }
 
-  window.location.href = `search.html?from=${encodeURIComponent(fromCity)}&to=${encodeURIComponent(toCity)}&date=${journeyDate}`;
+  window.location.href = `search.html?from=${encodeURIComponent(fromCity)}&to=${encodeURIComponent(toCity)}&date=${encodeURIComponent(journeyDate)}`;
 }
 
 function swapStations() {
@@ -1209,13 +1226,50 @@ async function renderBusListings() {
 
   const routeTitle = document.getElementById('route-title');
   const routeDate = document.getElementById('route-date');
+  const resultsCount = document.getElementById('results-count');
 
   if (searchFrom && searchTo) {
     if (routeTitle) routeTitle.innerText = `Buses from ${searchFrom} to ${searchTo}`;
     if (routeDate) routeDate.innerText = searchDate ? `Journey Date: ${searchDate}` : 'All Upcoming Schedules';
+  } else if (searchFrom) {
+    if (routeTitle) routeTitle.innerText = `Buses departing from ${searchFrom}`;
+    if (routeDate) routeDate.innerText = searchDate ? `Journey Date: ${searchDate}` : 'All Upcoming Schedules';
+  } else if (searchTo) {
+    if (routeTitle) routeTitle.innerText = `Buses arriving in ${searchTo}`;
+    if (routeDate) routeDate.innerText = searchDate ? `Journey Date: ${searchDate}` : 'All Upcoming Schedules';
   } else {
     if (routeTitle) routeTitle.innerText = "All Available Buses in Maharashtra";
+    if (routeDate) routeDate.innerText = 'All Upcoming Schedules';
   }
+
+  // Handle origin == destination gracefully
+  const isSameStation = Boolean(searchFrom && searchTo && searchFrom.toLowerCase() === searchTo.toLowerCase());
+
+  let busResult = [];
+  if (isSameStation) {
+    busResult = [];
+  } else if (searchFrom || searchTo || searchDate) {
+    busResult = await DatabaseAPI.getBuses({ from: searchFrom, to: searchTo, date: searchDate });
+  } else {
+    busResult = await DatabaseAPI.getBuses();
+  }
+
+  // Network or server failure handling
+  if (busResult && busResult.error) {
+    if (resultsCount) resultsCount.innerText = "0 Buses Found";
+    container.innerHTML = `
+      <div class="empty-state-card">
+        <div class="empty-icon"><i class="fas fa-exclamation-triangle"></i></div>
+        <h3>Couldn't load buses, retry</h3>
+        <p>We encountered a connection issue while fetching bus schedules. Please check your network and retry.</p>
+        <button type="button" class="btn-primary" onclick="renderBusListings()">Retry</button>
+      </div>
+    `;
+    return;
+  }
+
+  const allBuses = Array.isArray(busResult) ? busResult : [];
+  let filtered = [...allBuses];
 
   const acFilter = document.getElementById('filter-ac')?.checked;
   const nonAcFilter = document.getElementById('filter-non-ac')?.checked;
@@ -1224,55 +1278,18 @@ async function renderBusListings() {
   const maxPrice = document.getElementById('filter-price')?.value;
   const sortOption = document.getElementById('filter-sort')?.value;
 
-  const allBuses = await DatabaseAPI.getBuses();
-  let filtered = [...allBuses];
-
-  // Helper for Maharashtra city aliases
-  const normalizeCity = (c) => {
-    let s = (c || '').toLowerCase().trim();
-    if (s.includes('aurangabad') || s.includes('sambhajinagar')) return 'sambhajinagar';
-    if (s.includes('bombay') || s.includes('mumbai')) return 'mumbai';
-    if (s.includes('poona') || s.includes('pune')) return 'pune';
-    return s;
-  };
-
-  const normFrom = normalizeCity(searchFrom);
-  const normTo = normalizeCity(searchTo);
-
-  let searchMatches = filtered;
-  if (normFrom && normTo) {
-    searchMatches = filtered.filter(bus => {
-      const bFrom = normalizeCity(bus.from);
-      const bTo = normalizeCity(bus.to);
-      return bFrom.includes(normFrom) && bTo.includes(normTo);
-    });
-  } else if (normFrom) {
-    searchMatches = filtered.filter(bus => normalizeCity(bus.from).includes(normFrom));
-  } else if (normTo) {
-    searchMatches = filtered.filter(bus => normalizeCity(bus.to).includes(normTo));
-  }
-
-  let showingFallbackNotice = false;
-  if (searchMatches.length > 0) {
-    filtered = searchMatches;
-  } else {
-    // If no direct matches for searched pair, show all 12 buses with notice
-    filtered = [...allBuses];
-    showingFallbackNotice = true;
-  }
-
   if (acFilter || nonAcFilter) {
     filtered = filtered.filter(bus => {
-      if (acFilter && bus.busType.includes("AC")) return true;
-      if (nonAcFilter && !bus.busType.includes("AC")) return true;
+      if (acFilter && bus.busType && bus.busType.includes("AC")) return true;
+      if (nonAcFilter && bus.busType && !bus.busType.includes("AC")) return true;
       return false;
     });
   }
 
   if (sleeperFilter || seaterFilter) {
     filtered = filtered.filter(bus => {
-      if (sleeperFilter && bus.busType.includes("Sleeper")) return true;
-      if (seaterFilter && bus.busType.includes("Seater")) return true;
+      if (sleeperFilter && bus.busType && bus.busType.includes("Sleeper")) return true;
+      if (seaterFilter && bus.busType && bus.busType.includes("Seater")) return true;
       return false;
     });
   }
@@ -1281,52 +1298,26 @@ async function renderBusListings() {
     filtered = filtered.filter(bus => bus.price <= parseInt(maxPrice));
   }
 
-  if (filtered.length === 0) {
-    filtered = [...allBuses];
-  }
-
   if (sortOption === "price-low") filtered.sort((a, b) => a.price - b.price);
   else if (sortOption === "price-high") filtered.sort((a, b) => b.price - a.price);
   else if (sortOption === "rating") filtered.sort((a, b) => b.rating - a.rating);
 
-  const resultsCount = document.getElementById('results-count');
-  if (resultsCount) resultsCount.innerText = `${filtered.length} Buses Available`;
-
-  container.innerHTML = "";
-
-  if (showingFallbackNotice && searchFrom && searchTo) {
-    const notice = document.createElement("div");
-    notice.style.background = "#fffbeb";
-    notice.style.border = "1px solid #fde68a";
-    notice.style.color = "#92400e";
-    notice.style.padding = "12px 18px";
-    notice.style.borderRadius = "10px";
-    notice.style.marginBottom = "20px";
-    notice.style.display = "flex";
-    notice.style.alignItems = "center";
-    notice.style.gap = "12px";
-    notice.innerHTML = `<i class="fas fa-info-circle" style="font-size:1.3rem; color:#d97706;"></i>
-      <div>
-        <strong>No direct buses found for "${searchFrom} &rarr; ${searchTo}".</strong>
-        <div>Showing all ${filtered.length} available daily Musafir Travels Maharashtra schedules below:</div>
-      </div>`;
-    container.appendChild(notice);
-  }
-  if (resultsCount) resultsCount.innerText = `${filtered.length} Buses Found`;
-
   container.innerHTML = "";
 
   if (filtered.length === 0) {
+    if (resultsCount) resultsCount.innerText = "0 Buses Found";
     container.innerHTML = `
       <div class="empty-state-card">
-        <div class="empty-icon"><i class="fas fa-bus-alt"></i></div>
-        <h3>No buses found for this Maharashtra route</h3>
-        <p>Try searching for <strong>Chhatrapati Sambhajinagar (Aurangabad) to Mumbai</strong> or <strong>Aurangabad to Pune</strong>.</p>
-        <button class="btn-primary" onclick="resetSearchFilters()">View All Buses</button>
+        <div class="empty-icon"><i class="fas fa-search"></i></div>
+        <h3>No trips found for this route/date</h3>
+        <p>No scheduled buses match your search. Please check the route or select another date.</p>
+        <button type="button" class="btn-primary" onclick="resetSearchFilters()">View All Buses</button>
       </div>
     `;
     return;
   }
+
+  if (resultsCount) resultsCount.innerText = `${filtered.length} Buses Found`;
 
   filtered.forEach(bus => {
     const card = document.createElement('div');

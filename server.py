@@ -326,6 +326,32 @@ def init_sqlite_db():
 
 
 
+# Server-side Maharashtra city aliases for robust route matching
+CITY_ALIASES = {
+    "aurangabad": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "sambhajinagar": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "chhatrapati sambhajinagar": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "chhatrapati sambhajinagar (aurangabad)": "Chhatrapati Sambhajinagar (Aurangabad)",
+    "mumbai": "Mumbai",
+    "bombay": "Mumbai",
+    "pune": "Pune",
+    "poona": "Pune",
+    "surat": "Surat",
+    "nagpur": "Nagpur",
+    "hyderabad": "Hyderabad",
+}
+
+def resolve_city_alias(city_name):
+    if not city_name:
+        return ""
+    cleaned = city_name.strip().lower()
+    if cleaned in CITY_ALIASES:
+        return CITY_ALIASES[cleaned]
+    for alias, canonical in CITY_ALIASES.items():
+        if alias in cleaned or cleaned in alias:
+            return canonical
+    return city_name.strip()
+
 class MusafirHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def translate_path(self, path):
@@ -380,7 +406,9 @@ class MusafirHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
 
     def do_GET(self):
         """Handle GET API requests."""
-        path = urllib.parse.urlparse(self.path).path
+        parsed_url = urllib.parse.urlparse(self.path)
+        path = parsed_url.path
+        query_params = urllib.parse.parse_qs(parsed_url.query)
 
         if path in ["", "/", "/index.html"]:
             self.send_response(302)
@@ -389,7 +417,7 @@ class MusafirHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
             return
 
         endpoints = {
-            "/api/buses": self.get_buses,
+            "/api/buses": lambda: self.get_buses(query_params),
             "/api/bookings": self.get_bookings,
             "/api/users": self.get_users,
             "/api/coupons": self.get_coupons,
@@ -504,12 +532,37 @@ class MusafirHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
                 500,
             )
 
-    def get_buses(self):
-        """Fetch all buses from the SQLite database."""
+    def get_buses(self, query_params=None):
+        """Fetch buses from the SQLite database, with optional route filtering."""
+        query_params = query_params or {}
+        from_city = (query_params.get("from", [""])[0] or query_params.get("from_city", [""])[0] or "").strip()
+        to_city = (query_params.get("to", [""])[0] or query_params.get("to_city", [""])[0] or "").strip()
+        _date = (query_params.get("date", [""])[0] or "").strip()
+
+        norm_from = resolve_city_alias(from_city).lower()
+        norm_to = resolve_city_alias(to_city).lower()
+
+        # Handle origin == destination gracefully
+        if norm_from and norm_to and norm_from == norm_to:
+            return []
+
+        query_sql = "SELECT * FROM buses WHERE 1=1"
+        sql_params = []
+
+        if from_city:
+            canonical_from = resolve_city_alias(from_city)
+            query_sql += " AND (LOWER(from_city) = LOWER(?) OR from_city LIKE ?)"
+            sql_params.extend([canonical_from, f"%{from_city}%"])
+
+        if to_city:
+            canonical_to = resolve_city_alias(to_city)
+            query_sql += " AND (LOWER(to_city) = LOWER(?) OR to_city LIKE ?)"
+            sql_params.extend([canonical_to, f"%{to_city}%"])
+
+        query_sql += " ORDER BY id"
+
         with get_connection() as conn:
-            rows = conn.execute(
-                "SELECT * FROM buses ORDER BY id"
-            ).fetchall()
+            rows = conn.execute(query_sql, sql_params).fetchall()
 
         buses = []
 
